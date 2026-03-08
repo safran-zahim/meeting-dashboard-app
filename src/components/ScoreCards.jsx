@@ -1,3 +1,5 @@
+import { AlertCircle } from 'lucide-react';
+
 const TYPE_COLORS = {
   standup: '#3B82F6', '1:1': '#00C48C', planning: '#EC4899',
   review: '#7C3AED', retrospective: '#14B8A6', 'all-hands': '#FF3B5C',
@@ -59,7 +61,7 @@ export default function ScoreCards({ title, sub, items, color, rankType, showRea
                 />
               </div>
               {showReason && item.isAsync && (
-                <div className="contrib-reason">⚠ Could be async</div>
+                <div className="contrib-reason" style={{ display: 'flex', alignItems: 'center', gap: 4 }}><AlertCircle size={12} /> Could be async</div>
               )}
             </div>
           );

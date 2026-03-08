@@ -1,6 +1,7 @@
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from 'recharts';
+import { TrendingUp, ArrowUp } from 'lucide-react';
 
 function CustomTooltip({ active, payload, label }) {
   if (!active || !payload?.length) return null;
@@ -48,7 +49,7 @@ export default function ContributionTrend({ meetings }) {
 
   return (
     <div className="chart-card">
-      <div className="card-title">📈 Score vs. Meeting Load Trend</div>
+      <div className="card-title" style={{ display: 'flex', alignItems: 'center', gap: 6 }}><TrendingUp size={16} /> Score vs. Meeting Load Trend</div>
       <div className="card-sub" style={{ marginTop: -12, marginBottom: 16 }}>
         Are scores declining as your meeting load increases?
       </div>
@@ -62,8 +63,8 @@ export default function ContributionTrend({ meetings }) {
           <Line type="monotone" dataKey="meetings" name="Meetings" stroke="#3B82F6" strokeWidth={2} strokeDasharray="5 4" dot={{ fill: '#3B82F6', r: 3 }} />
         </LineChart>
       </ResponsiveContainer>
-      <div className="chart-note">
-        ↑ When meetings pile up, scores tend to drop — consider blocking focus time to protect quality.
+      <div className="chart-note" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+        <ArrowUp size={14} style={{ flexShrink: 0 }} /> When meetings pile up, scores tend to drop — consider blocking focus time to protect quality.
       </div>
     </div>
   );

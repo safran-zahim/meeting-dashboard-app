@@ -1,6 +1,7 @@
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
 } from 'recharts';
+import { BarChart2 } from 'lucide-react';
 
 function CustomTooltip({ active, payload, label }) {
   if (!active || !payload?.length) return null;
@@ -42,7 +43,7 @@ export default function WeeklyLoadChart({ meetings }) {
 
   return (
     <div className="chart-card">
-      <div className="card-title">📊 Weekly Meeting Load</div>
+      <div className="card-title" style={{ display: 'flex', alignItems: 'center', gap: 6 }}><BarChart2 size={16} /> Weekly Meeting Load</div>
       <div className="card-sub" style={{ marginTop: -12, marginBottom: 16 }}>Meeting count and hours by day</div>
       <ResponsiveContainer width="100%" height={180}>
         <BarChart data={data} barGap={4}>

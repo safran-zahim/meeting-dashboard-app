@@ -143,24 +143,32 @@ export default function TriggerPanel({ onTrigger, isRunning }) {
       <div className={`trigger-body ${collapsed ? 'collapsed' : ''}`}>
         <div className="form-grid" style={{ gridTemplateColumns: '1fr' }}>
           <div className="form-field">
-            <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}><User size={14} /> Your Email <span style={{ fontSize: 10, opacity: 0.5 }}>(for personalized insights)</span></label>
-            <input type="email" placeholder="e.g. you@orangehrm.com"
-              value={form.ownerEmail} onChange={e => update('ownerEmail', e.target.value)}
-              style={{ fontFamily: "'DM Mono', monospace", fontSize: 13 }} />
+            <label>Employee Name and ID</label>
+            <div className="oxd-emp-container">
+              <div className="oxd-emp-name">
+                <input type="text" placeholder="Type for hints..."
+                  value={form.ownerName || ''} onChange={e => update('ownerName', e.target.value)} />
+              </div>
+              <div className="oxd-emp-id">
+                <input type="text" placeholder="EMP ID"
+                  value={form.ownerId || ''} onChange={e => update('ownerId', e.target.value)} />
+              </div>
+            </div>
+            <div className="oxd-help-text">Type employee name to select from list, or enter ID directly.</div>
           </div>
         </div>
 
         <div className="form-grid">
           <div className="form-field">
-            <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Calendar size={14} /> Date From</label>
+            <label>Date From</label>
             <input type="date" value={form.dateFrom} onChange={e => update('dateFrom', e.target.value)} />
           </div>
           <div className="form-field">
-            <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Calendar size={14} /> Date To</label>
+            <label>Date To</label>
             <input type="date" value={form.dateTo} onChange={e => update('dateTo', e.target.value)} />
           </div>
           <div className="form-field">
-            <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Calendar size={14} /> Work Days / Week</label>
+            <label>Work Days / Week</label>
             <input type="number" min="1" max="7" placeholder="Default: 5"
               value={form.workDays} onChange={e => update('workDays', e.target.value)} />
           </div>
@@ -168,7 +176,7 @@ export default function TriggerPanel({ onTrigger, isRunning }) {
 
         <div className="form-row-2col">
           <div className="form-field">
-            <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Clock size={14} /> Work Hours</label>
+            <label>Work Hours</label>
             <div className="time-range-picker">
               <TimePicker value={form.workStart} onChange={v => update('workStart', v)} label="Start" />
               <span className="time-arrow">→</span>
@@ -180,7 +188,7 @@ export default function TriggerPanel({ onTrigger, isRunning }) {
           </div>
 
           <div className="form-field">
-            <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Clock size={14} /> Minimum Meeting Duration</label>
+            <label>Minimum Meeting Duration</label>
             <div className="duration-picker">
               {DURATION_OPTIONS.map(opt => (
                 <button
@@ -198,7 +206,7 @@ export default function TriggerPanel({ onTrigger, isRunning }) {
 
         <div className="form-grid" style={{ marginTop: 14, gridTemplateColumns: '1fr' }}>
           <div className="form-field">
-            <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Tag size={14} /> Meeting Type</label>
+            <label>Meeting Type</label>
             <select value={form.typeFilter} onChange={e => update('typeFilter', e.target.value)}>
               <option value="">All types</option>
               <option value="standup">Standup</option>

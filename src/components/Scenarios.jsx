@@ -57,31 +57,7 @@ export default function Scenarios({ onSelectScenario }) {
             role={onSelect ? 'button' : undefined}
             tabIndex={onSelect ? 0 : undefined}
           >
-            {image === 'sales' && (
-              <div className="scenario-card-hero scenario-card-hero-sales">
-                <div className="scenario-card-hero-pattern" aria-hidden />
-                <img src="/ohrm_logo.png" alt="" className="scenario-card-hero-img" />
-                <span className="scenario-card-hero-icon" aria-hidden><TrendingUp size={32} color="var(--orange)" /></span>
-              </div>
-            )}
-            {image === 'clientpulse' && (
-              <div className="scenario-card-hero scenario-card-hero-clientpulse">
-                <div className="scenario-card-hero-pattern" aria-hidden />
-                <span className="scenario-card-hero-icon scenario-card-hero-icon-cs" aria-hidden><Users size={40} color="#3B82F6" /></span>
-              </div>
-            )}
-            {image === 'cpo' && (
-              <div className="scenario-card-hero scenario-card-hero-cpo">
-                <div className="scenario-card-hero-pattern" aria-hidden />
-                <span className="scenario-card-hero-icon scenario-card-hero-icon-cpo" aria-hidden><Cpu size={40} color="var(--orange)" /></span>
-              </div>
-            )}
-            {image === 'leadership' && (
-              <div className="scenario-card-hero scenario-card-hero-leadership">
-                <div className="scenario-card-hero-pattern" aria-hidden />
-                <span className="scenario-card-hero-icon scenario-card-hero-icon-leadership" aria-hidden><Maximize size={40} color="#FF3B5C" /></span>
-              </div>
-            )}
+
             <div className="scenario-section-header">
               <span className="scenario-icon">{icon}</span>
               <div>

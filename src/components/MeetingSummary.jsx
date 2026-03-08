@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { CheckCircle, Ban, RefreshCw, FileText, Mail, MessageSquare, FileEdit, Clock, Search, Calendar, Target, Repeat, ClipboardList } from 'lucide-react';
 
 const TYPE_COLORS = {
   standup: '#3B82F6', '1:1': '#00C48C', planning: '#EC4899',
@@ -9,18 +10,18 @@ const TYPE_COLORS = {
 };
 
 const REC_STYLES = {
-  attend:       { bg: '#00C48C22', border: '#00C48C', color: '#00C48C', icon: '✅', label: 'ATTEND' },
-  skip:         { bg: '#FF3B5C22', border: '#FF3B5C', color: '#FF3B5C', icon: '🚫', label: 'SKIP' },
-  delegate:     { bg: '#FF660022', border: '#FF6600', color: '#FF6600', icon: '🔄', label: 'DELEGATE' },
-  summary_only: { bg: '#3B82F622', border: '#3B82F6', color: '#3B82F6', icon: '📄', label: 'SUMMARY ONLY' },
+  attend: { bg: 'var(--green-bg, #00C48C22)', border: 'var(--green, #00C48C)', color: 'var(--green, #00C48C)', icon: <CheckCircle size={14} />, label: 'ATTEND' },
+  skip: { bg: 'var(--red-bg, #FF3B5C22)', border: 'var(--red, #FF3B5C)', color: 'var(--red, #FF3B5C)', icon: <Ban size={14} />, label: 'SKIP' },
+  delegate: { bg: 'var(--orange-bg, #FF660022)', border: 'var(--orange, #FF6600)', color: 'var(--orange, #FF6600)', icon: <RefreshCw size={14} />, label: 'DELEGATE' },
+  summary_only: { bg: 'var(--blue-bg, #3B82F622)', border: 'var(--blue, #3B82F6)', color: 'var(--blue, #3B82F6)', icon: <FileText size={14} />, label: 'SUMMARY ONLY' },
 };
 
 const REPLACE_LABELS = {
   nothing: null,
-  email: '✉️ Email update',
-  slack_summary: '💬 Slack summary',
-  async_doc: '📝 Async doc',
-  shorter_meeting: '⏱️ Shorter meeting',
+  email: <><Mail size={14} /> Email update</>,
+  slack_summary: <><MessageSquare size={14} /> Slack summary</>,
+  async_doc: <><FileEdit size={14} /> Async doc</>,
+  shorter_meeting: <><Clock size={14} /> Shorter meeting</>,
 };
 
 function getTypeColor(type) {
@@ -80,10 +81,9 @@ function SelfEvaluation({ ownerInsights }) {
 
   return (
     <>
-      {/* Hero card with gradient */}
-      <div className="self-eval-hero">
-        <div style={{ fontSize: 16, fontWeight: 800 }}>Personal Meeting Self-Evaluation</div>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.5)', marginTop: 4 }}>
+      <div style={{ marginBottom: 20 }}>
+        <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--text)' }}>Personal Meeting Self-Evaluation</div>
+        <div style={{ fontSize: 12, color: 'var(--muted)', marginTop: 4 }}>
           Insights based on your recent meeting performance
         </div>
       </div>
@@ -91,10 +91,9 @@ function SelfEvaluation({ ownerInsights }) {
       {/* Overall score + stats */}
       <div className="card" style={{ marginBottom: 16 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 20 }}>
-          {/* Score circle */}
           <div style={{
             width: 72, height: 72, borderRadius: '50%', flexShrink: 0,
-            background: `conic-gradient(${sc} ${o.avgContributionScore * 3.6}deg, rgba(255,255,255,0.06) 0deg)`,
+            background: `conic-gradient(${sc} ${o.avgContributionScore * 3.6}deg, var(--border) 0deg)`,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}>
             <div style={{
@@ -187,11 +186,10 @@ function SelfEvaluation({ ownerInsights }) {
             </div>
           )}
 
-          {/* Focus for next week */}
           {o.focusArea && (
             <div style={{
               padding: '12px 14px', borderRadius: 10,
-              background: 'linear-gradient(135deg, rgba(255,102,0,0.1), rgba(255,102,0,0.04))',
+              background: 'var(--orange-bg)',
               border: '1px solid rgba(255,102,0,0.15)',
             }}>
               <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--orange)', marginBottom: 4, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
@@ -221,13 +219,13 @@ function SelfEvaluation({ ownerInsights }) {
                 }}>{mf.type}</span>
               </div>
               {mf.feedback && (
-                <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.45)', lineHeight: 1.5, marginBottom: 3 }}>
-                  💬 {mf.feedback}
+                <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.45)', lineHeight: 1.5, marginBottom: 3, display: 'flex', gap: 6 }}>
+                  <MessageSquare size={12} style={{ flexShrink: 0, marginTop: 2 }} /> <span>{mf.feedback}</span>
                 </div>
               )}
               {mf.ownerAdvice && mf.ownerAdvice !== mf.feedback && (
-                <div style={{ fontSize: 11, color: 'rgba(255,102,0,0.7)', lineHeight: 1.5 }}>
-                  🎯 {mf.ownerAdvice}
+                <div style={{ fontSize: 11, color: 'var(--orange)', lineHeight: 1.5, display: 'flex', gap: 6 }}>
+                  <Target size={12} style={{ flexShrink: 0, marginTop: 2 }} /> <span>{mf.ownerAdvice}</span>
                 </div>
               )}
             </div>
@@ -239,7 +237,7 @@ function SelfEvaluation({ ownerInsights }) {
       {o.meetingsToSkip > 0 && (
         <div style={{
           padding: '14px 16px', borderRadius: 10, marginBottom: 20,
-          background: 'linear-gradient(135deg, rgba(255,59,92,0.08), rgba(255,102,0,0.05))',
+          background: 'var(--red-bg)',
           border: '1px solid rgba(255,59,92,0.15)',
         }}>
           <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 4, color: '#FF3B5C' }}>
@@ -261,6 +259,9 @@ function AttendanceBadge({ recommendation }) {
       background: style.bg,
       border: `1px solid ${style.border}55`,
       color: style.color,
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: 4
     }}>
       {style.icon} {style.label}
     </span>
@@ -289,8 +290,8 @@ function MeetingDetailCard({ meeting, initialExpanded = false }) {
             width: 36, height: 36, borderRadius: 10, flexShrink: 0,
             background: `${typeColor}20`, border: `1px solid ${typeColor}40`,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 14,
-          }}>📋</div>
+            fontSize: 14, color: typeColor
+          }}><ClipboardList size={18} /></div>
           <div style={{ minWidth: 0 }}>
             <div style={{ fontSize: 13, fontWeight: 700, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
               {meeting.summary}
@@ -303,7 +304,7 @@ function MeetingDetailCard({ meeting, initialExpanded = false }) {
                 fontSize: 9, fontWeight: 700,
               }}>{meeting.type}</span>
               <span>{meeting.duration}min</span>
-              {meeting.isRecurring && <span style={{ color: '#3B82F6' }}>🔁 Recurring</span>}
+              {meeting.isRecurring && <span style={{ color: 'var(--blue)', display: 'flex', alignItems: 'center', gap: 4 }}><Repeat size={10} /> Recurring</span>}
             </div>
           </div>
         </div>
@@ -350,8 +351,8 @@ function MeetingDetailCard({ meeting, initialExpanded = false }) {
           )}
 
           {replaceLabel && (
-            <div className="detail-replace-tag">
-              Could be replaced with: <strong>{replaceLabel}</strong>
+            <div className="detail-replace-tag" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              Could be replaced with: <strong style={{ display: 'flex', alignItems: 'center', gap: 4 }}>{replaceLabel}</strong>
             </div>
           )}
 
@@ -402,8 +403,8 @@ export default function MeetingSummary({ meetings, ownerInsights, attendanceRecs
 
   return (
     <div>
-      <div className="card-title" style={{ marginBottom: 6, fontSize: 14 }}>
-        🔍 Individual Insights
+      <div className="card-title" style={{ marginBottom: 6, fontSize: 14, display: 'flex', alignItems: 'center', gap: 8 }}>
+        <Search size={16} /> Individual Insights
       </div>
       <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', marginBottom: 24 }}>
         Personal self-evaluation across {meetings.length} meetings — skills, strengths, and actionable advice
@@ -416,14 +417,14 @@ export default function MeetingSummary({ meetings, ownerInsights, attendanceRecs
       {skipMeetings.length > 0 && (
         <div style={{ marginTop: 8 }}>
           <div style={{
-            fontSize: 13, fontWeight: 700, color: '#FF3B5C', marginBottom: 12,
+            fontSize: 13, fontWeight: 700, color: 'var(--red)', marginBottom: 12,
             display: 'flex', alignItems: 'center', gap: 8,
           }}>
             <span style={{
               width: 28, height: 28, borderRadius: 8,
-              background: '#FF3B5C18', border: '1px solid #FF3B5C33',
-              display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14,
-            }}>🚫</span>
+              background: 'var(--red-bg, #FF3B5C18)', border: '1px solid var(--red-border, #FF3B5C33)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}><Ban size={14} color="var(--red)" /></span>
             Meetings You Can Skip ({skipMeetings.length})
           </div>
           {skipMeetings.map(m => <MeetingDetailCard key={m.id} meeting={m} />)}
@@ -433,14 +434,14 @@ export default function MeetingSummary({ meetings, ownerInsights, attendanceRecs
       {attendMeetings.length > 0 && (
         <div style={{ marginTop: 24 }}>
           <div style={{
-            fontSize: 13, fontWeight: 700, color: '#00C48C', marginBottom: 12,
+            fontSize: 13, fontWeight: 700, color: 'var(--green)', marginBottom: 12,
             display: 'flex', alignItems: 'center', gap: 8,
           }}>
             <span style={{
               width: 28, height: 28, borderRadius: 8,
-              background: '#00C48C18', border: '1px solid #00C48C33',
-              display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14,
-            }}>✅</span>
+              background: 'var(--green-bg, #00C48C18)', border: '1px solid var(--green-border, #00C48C33)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}><CheckCircle size={14} color="var(--green)" /></span>
             Meetings Worth Attending ({attendMeetings.length})
           </div>
           {attendMeetings.map(m => <MeetingDetailCard key={m.id} meeting={m} />)}
@@ -453,11 +454,11 @@ export default function MeetingSummary({ meetings, ownerInsights, attendanceRecs
         background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)',
         fontSize: 11, color: 'rgba(255,255,255,0.4)',
       }}>
-        <span>📅 <strong style={{ color: 'rgba(255,255,255,0.6)' }}>{meetings.length}</strong> meetings</span>
-        <span>✅ <strong style={{ color: '#00C48C' }}>{attendMeetings.length}</strong> attend</span>
-        <span>🚫 <strong style={{ color: '#FF3B5C' }}>{skipMeetings.length}</strong> skip/delegate</span>
+        <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><Calendar size={12} /> <strong style={{ color: 'rgba(255,255,255,0.6)' }}>{meetings.length}</strong> meetings</span>
+        <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><CheckCircle size={12} color="var(--green)" /> <strong style={{ color: 'var(--green)' }}>{attendMeetings.length}</strong> attend</span>
+        <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><Ban size={12} color="var(--red)" /> <strong style={{ color: 'var(--red)' }}>{skipMeetings.length}</strong> skip/delegate</span>
         {ownerInsights && ownerInsights.hoursRecoverable > 0 && (
-          <span>⏱ <strong style={{ color: '#FFB800' }}>{ownerInsights.hoursRecoverable}h</strong> recoverable</span>
+          <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><Clock size={12} color="var(--yellow, #FFB800)" /> <strong style={{ color: 'var(--yellow, #FFB800)' }}>{ownerInsights.hoursRecoverable}h</strong> recoverable</span>
         )}
       </div>
     </div>

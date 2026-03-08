@@ -1,3 +1,5 @@
+import { Clock } from 'lucide-react';
+
 export default function TimeBreakdown({ breakdown, effective }) {
   const { decision, discussion, idle } = breakdown;
   const circumference = 2 * Math.PI * 52;
@@ -31,7 +33,7 @@ export default function TimeBreakdown({ breakdown, effective }) {
 
   return (
     <div className="card">
-      <div className="card-title"><span>⏱</span> Time Breakdown</div>
+      <div className="card-title" style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Clock size={16} /> Time Breakdown</div>
       <div className="donut-section">
         <div className="donut-container">
           <svg width="140" height="140" viewBox="0 0 140 140">

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Clock, ClipboardList, Mic, Ban, Clock4, Activity, Moon, RotateCw, CheckSquare, CalendarDays, Settings, Bot } from 'lucide-react';
 
 const T = {
   orange: 'var(--orange)',
@@ -35,10 +36,10 @@ const BASE_EVENTS = [
 ];
 
 const INSIGHT_CARDS = [
-  { type: 'warning', icon: '⏱', title: 'Shorten to 45 min', tag: 'Duration', body: 'Past 6 Product Syncs averaged 48 min. Blocking a full hour creates dead time. Suggest scheduling 45 min to keep energy focused.', action: '→ Resize event' },
-  { type: 'tip', icon: '📋', title: 'Send agenda 30 min before', tag: 'Prep', body: 'Meetings with a pre-shared agenda ran 22% more efficiently. 3 open action items from last week haven\'t been resolved.', chips: ['Figma prototype review', 'API spec sign-off', 'Q4 roadmap'], action: '→ Draft agenda with AI' },
-  { type: 'success', icon: '🎙', title: 'Balance talk time', tag: 'Engagement', body: 'You spoke 68% of the time on average. Try facilitating more input from Sarah K. and Marcus D.', talkRatio: 68, attendees: [{ label: 'You', color: T.blue }, { label: 'Sarah K.', color: T.red }, { label: 'Marcus D.', color: T.yellow }, { label: '+2', color: T.green }] },
-  { type: 'danger', icon: '🚫', title: 'Consider skipping', tag: 'Skip', body: 'Your Thursday 4 PM "Weekly Touchbase" with Alex has had no action items in 4 sessions. Convert to async Slack updates.', skipBtn: true },
+  { type: 'warning', icon: <Clock size={16} />, title: 'Shorten to 45 min', tag: 'Duration', body: 'Past 6 Product Syncs averaged 48 min. Blocking a full hour creates dead time. Suggest scheduling 45 min to keep energy focused.', action: '→ Resize event' },
+  { type: 'tip', icon: <ClipboardList size={16} />, title: 'Send agenda 30 min before', tag: 'Prep', body: 'Meetings with a pre-shared agenda ran 22% more efficiently. 3 open action items from last week haven\'t been resolved.', chips: ['Figma prototype review', 'API spec sign-off', 'Q4 roadmap'], action: '→ Draft agenda with AI' },
+  { type: 'success', icon: <Mic size={16} />, title: 'Balance talk time', tag: 'Engagement', body: 'You spoke 68% of the time on average. Try facilitating more input from Sarah K. and Marcus D.', talkRatio: 68, attendees: [{ label: 'You', color: T.blue }, { label: 'Sarah K.', color: T.red }, { label: 'Marcus D.', color: T.yellow }, { label: '+2', color: T.green }] },
+  { type: 'danger', icon: <Ban size={16} />, title: 'Consider skipping', tag: 'Skip', body: 'Your Thursday 4 PM "Weekly Touchbase" with Alex has had no action items in 4 sessions. Convert to async Slack updates.', skipBtn: true },
 ];
 
 const HEALTH_METRICS = [
@@ -50,10 +51,10 @@ const HEALTH_METRICS = [
 ];
 
 const PATTERNS = [
-  { type: 'tip', icon: '🕘', title: 'Peak productivity: 9–11 AM', body: '3 meetings are scheduled during your best deep-work window. Consider blocking it.', action: '→ Block focus time' },
-  { type: 'warning', icon: '😓', title: 'Tuesday overload: 6.5h in meetings', body: 'Back-to-back meetings with no breaks. Past days like this correlated with lower sentiment.', action: '→ Suggest rescheduling' },
-  { type: 'success', icon: '🌙', title: 'Fridays improving', body: "You've reduced Friday meeting load by 40% over the last month. Deep-work Fridays are working." },
-  { type: 'info', icon: '🔁', title: '4 recurring meetings need review', body: "Haven't generated meaningful outcomes in 30+ days. An audit could save ~3.5h/week.", action: '→ Run audit' },
+  { type: 'tip', icon: <Clock4 size={16} />, title: 'Peak productivity: 9–11 AM', body: '3 meetings are scheduled during your best deep-work window. Consider blocking it.', action: '→ Block focus time' },
+  { type: 'warning', icon: <Activity size={16} />, title: 'Tuesday overload: 6.5h in meetings', body: 'Back-to-back meetings with no breaks. Past days like this correlated with lower sentiment.', action: '→ Suggest rescheduling' },
+  { type: 'success', icon: <Moon size={16} />, title: 'Fridays improving', body: "You've reduced Friday meeting load by 40% over the last month. Deep-work Fridays are working." },
+  { type: 'info', icon: <RotateCw size={16} />, title: '4 recurring meetings need review', body: "Haven't generated meaningful outcomes in 30+ days. An audit could save ~3.5h/week.", action: '→ Run audit' },
 ];
 
 const ACTIONS_DATA = [
@@ -271,7 +272,7 @@ export default function FathomCalendar() {
     <div className="fathom-cal-page">
       <header className="fathom-cal-topbar">
         <div className="fathom-cal-topbar-logo">
-          <div className="fathom-cal-logo-icon">🗓️</div>
+          <div className="fathom-cal-logo-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}><CalendarDays size={18} /></div>
           <span className="fathom-cal-topbar-brand">Fathom <span className="fathom-cal-topbar-brand-accent">Calendar</span></span>
         </div>
         <div className="fathom-cal-topbar-nav">
@@ -334,10 +335,10 @@ export default function FathomCalendar() {
           <div className="fathom-cal-panel-header">
             <div className="fathom-cal-panel-head-row">
               <div className="fathom-cal-panel-brand">
-                <div className="fathom-cal-panel-logo">◈</div>
+                <div className="fathom-cal-panel-logo" style={{ display: 'flex', alignItems: 'center' }}><Activity size={14} /></div>
                 <span>Fathom <span className="fathom-cal-panel-accent">Insights</span></span>
               </div>
-              <button type="button" className="fathom-cal-panel-settings" aria-label="Settings">⚙</button>
+              <button type="button" className="fathom-cal-panel-settings" aria-label="Settings"><Settings size={16} /></button>
             </div>
             <div className="fathom-cal-panel-stats">
               {[['14h', 'Mtgs / week'], ['73%', 'Effectiveness'], ['3↓', 'Can skip']].map(([v, l]) => (
@@ -363,7 +364,7 @@ export default function FathomCalendar() {
                   <div className="fathom-cal-next-meta">Today · 2:00–3:00 PM · 5 attendees</div>
                   <div className="fathom-cal-next-score">
                     <svg width="48" height="48" viewBox="0 0 48 48" className="fathom-cal-score-ring">
-                      <circle cx="24" cy="24" r="20" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="4" />
+                      <circle cx="24" cy="24" r="20" fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="4" className="ring-bg" />
                       <circle cx="24" cy="24" r="20" fill="none" stroke={T.orange} strokeWidth="4" strokeDasharray="125.6" strokeDashoffset="37.68" strokeLinecap="round" />
                     </svg>
                     <span className="fathom-cal-score-num">70</span>
@@ -397,7 +398,7 @@ export default function FathomCalendar() {
             )}
             {activeTab === 'actions' && (
               <div className="fathom-cal-tab-block">
-                <SectionTitle>✅ Open Action Items</SectionTitle>
+                <SectionTitle><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><CheckSquare size={16} /> Open Action Items</span></SectionTitle>
                 <div className="fathom-cal-actions-list">
                   {ACTIONS_DATA.map((a, i) => (
                     <div key={i} className="fathom-cal-action-row">
@@ -411,7 +412,7 @@ export default function FathomCalendar() {
                     </div>
                   ))}
                 </div>
-                <InsightCard card={{ type: 'tip', icon: '🤖', title: '2 items overdue', body: "The API spec and Figma link tasks are overdue. Fathom will auto-surface them in today's meeting brief.", action: '→ View meeting brief' }} delay={0} />
+                <InsightCard card={{ type: 'tip', icon: <Bot size={16} />, title: '2 items overdue', body: "The API spec and Figma link tasks are overdue. Fathom will auto-surface them in today's meeting brief.", action: '→ View meeting brief' }} delay={0} />
               </div>
             )}
           </div>

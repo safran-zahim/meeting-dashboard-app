@@ -1,3 +1,5 @@
+import { Tag } from 'lucide-react';
+
 const TYPE_COLORS = {
   standup: '#3B82F6', '1:1': '#00C48C', planning: '#EC4899',
   review: '#7C3AED', retrospective: '#14B8A6', 'all-hands': '#FF3B5C',
@@ -18,7 +20,7 @@ export default function MeetingTypes({ types }) {
 
   return (
     <div className="chart-card">
-      <div className="card-title">🏷️ By Meeting Type</div>
+      <div className="card-title" style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Tag size={16} /> By Meeting Type</div>
       <div className="card-sub" style={{ marginTop: -12, marginBottom: 16 }}>Count & avg score per category</div>
       <div className="type-bar-list">
         {types.map((t, i) => {
@@ -29,8 +31,8 @@ export default function MeetingTypes({ types }) {
               <div className="type-bar-header">
                 <div className="type-bar-label">
                   <div className="type-bar-dot" style={{ background: color }} />
-                  <span>{t.type}</span>
-                  <span className="type-bar-count">×{t.count}</span>
+                  <span style={{ color: 'var(--text)' }}>{t.type}</span>
+                  <span className="type-bar-count" style={{ color: 'var(--muted)' }}>×{t.count}</span>
                 </div>
                 <span className="type-bar-pct" style={{ color }}>{score}%</span>
               </div>

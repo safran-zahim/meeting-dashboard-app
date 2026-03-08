@@ -1,12 +1,14 @@
+import { Ban, Mail, Clock, MessageSquare, TrendingUp, Lightbulb, Bot, Rocket } from 'lucide-react';
+
 const SEVERITY_STYLES = {
-  high:   { bg: 'rgba(255,59,92,0.12)', border: '#FF3B5C', label: 'HIGH' },
-  medium: { bg: 'rgba(255,102,0,0.12)', border: '#FF6600', label: 'MED'  },
-  low:    { bg: 'rgba(0,196,140,0.12)', border: '#00C48C', label: 'LOW'  },
+  high: { bg: 'var(--red-bg)', border: 'var(--red)', label: 'HIGH' },
+  medium: { bg: 'var(--orange-bg, rgba(255,123,29,0.12))', border: 'var(--orange)', label: 'MED' },
+  low: { bg: 'var(--green-bg)', border: 'var(--green)', label: 'LOW' },
 };
 
 const INSIGHT_ICONS = {
-  skip: '🚫', email: '✉️', shorten: '⏱️', contribute: '💬',
-  improve: '📈', async: '📧', general: '💡',
+  skip: <Ban size={16} />, email: <Mail size={16} />, shorten: <Clock size={16} />, contribute: <MessageSquare size={16} />,
+  improve: <TrendingUp size={16} />, async: <Mail size={16} />, general: <Lightbulb size={16} />,
 };
 
 function classifyInsight(text) {
@@ -32,11 +34,10 @@ function AttendanceSummaryBanner({ attendanceRecs, ownerInsights }) {
   return (
     <div style={{
       padding: '14px 16px', borderRadius: 10, marginBottom: 16,
-      background: 'linear-gradient(135deg, rgba(255,59,92,0.1), rgba(255,102,0,0.08))',
-      border: '1px solid rgba(255,59,92,0.2)',
+      background: 'var(--red-bg)', border: '1px solid rgba(255,59,92,0.2)',
     }}>
-      <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 8, color: '#FF3B5C' }}>
-        🚀 Skip {skippable.length} meeting{skippable.length > 1 ? 's' : ''} next week to recover ~{totalHours}h
+      <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 8, color: 'var(--red)', display: 'flex', alignItems: 'center', gap: 6 }}>
+        <Rocket size={16} /> Skip {skippable.length} meeting{skippable.length > 1 ? 's' : ''} next week to recover ~{totalHours}h
       </div>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
         {skippable.map((r, i) => (
@@ -65,7 +66,7 @@ export default function InsightCards({ items, attendanceRecs, ownerInsights }) {
 
   return (
     <div className="card">
-      <div className="card-title">🤖 AI-Generated Insights</div>
+      <div className="card-title" style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Bot size={16} /> AI-Generated Insights</div>
       <div className="card-sub" style={{ marginTop: -12, marginBottom: 16 }}>
         Personalized recommendations from transcript analysis
       </div>
@@ -86,8 +87,9 @@ export default function InsightCards({ items, attendanceRecs, ownerInsights }) {
               }}
             >
               <div className="insight-header">
-                <div className="insight-title">
-                  {INSIGHT_ICONS[ins.type] || '💡'} {ins.text}
+                <div className="insight-title" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  {INSIGHT_ICONS[ins.type] || <Lightbulb size={16} />}
+                  <span>{ins.text}</span>
                 </div>
                 <span
                   className="insight-severity"

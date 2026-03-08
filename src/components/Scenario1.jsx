@@ -178,9 +178,11 @@ function SectionHeader({ title, sub }) {
 function KpiCard({ label, value, sub, accent, icon }) {
   return (
     <div className="kpi-card scenario1-kpi" style={{ ['--kpi-accent']: accent }}>
-      <div className="kpi-accent" style={{ background: `linear-gradient(90deg, ${accent}, transparent)` }} />
-      <div className="scenario1-kpi-icon">{icon}</div>
-      <div className="kpi-label">{label}</div>
+      <div className="kpi-accent" style={{ background: accent }} />
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+        <div className="scenario1-kpi-icon">{icon}</div>
+        <div className="kpi-label">{label}</div>
+      </div>
       <div className="kpi-value">{value}</div>
       <div className="scenario1-kpi-sub" style={{ color: accent }}>{sub}</div>
     </div>

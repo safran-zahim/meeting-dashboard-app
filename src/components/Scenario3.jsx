@@ -388,7 +388,7 @@ export default function Scenario3({ onBack }) {
                         <span style={{ color: T.green }}>Listening {100 - selectedMember.talkRatio}%</span>
                       </div>
                       <div className="scenario3-talk-bar">
-                        <div className="scenario3-talk-fill" style={{ width: `${selectedMember.talkRatio}%`, background: selectedMember.talkRatio > 50 ? `linear-gradient(90deg, ${T.red}, ${T.orange})` : `linear-gradient(90deg, ${T.green}, ${T.blue})` }} />
+                        <div className="scenario3-talk-fill" style={{ width: `${selectedMember.talkRatio}%`, background: selectedMember.talkRatio > 50 ? T.orange : T.green }} />
                       </div>
                       <div className="scenario3-talk-msg">
                         {selectedMember.talkRatio > 55 ? '⚠ Speaking too much — allow more stakeholder airtime' : selectedMember.talkRatio < 30 ? '⚠ Consider being more assertive' : '✓ Healthy conversation balance maintained'}

@@ -10,7 +10,7 @@ import ContributionTrend from './ContributionTrend';
 import AsyncSuggestions from './AsyncSuggestions';
 import UnresolvedItems from './UnresolvedItems';
 import ActionItems from './ActionItems';
-
+import { AlertCircle, Trophy, TrendingDown } from 'lucide-react';
 export default function Dashboard({ data, isRunning }) {
   const {
     summary, trends, topPerformers, needsImprovement, asyncCandidates,
@@ -29,8 +29,8 @@ export default function Dashboard({ data, isRunning }) {
   return (
     <>
       {alertParts.length > 0 && (
-        <div className="alert-bar">
-          ⚠️ <strong>{alertParts[0]}.</strong>&nbsp; {alertParts.slice(1).join('. ')}.
+        <div className="alert-bar" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <AlertCircle size={16} /> <strong>{alertParts[0]}.</strong>&nbsp; {alertParts.slice(1).join('. ')}.
         </div>
       )}
 
@@ -43,17 +43,17 @@ export default function Dashboard({ data, isRunning }) {
       {/* Row 3: Top / Bottom Contribution Lists */}
       <div className="dash-grid">
         <ScoreCards
-          title="🏆 Top 5 — Best Performers"
+          title={<span style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Trophy size={16} /> Top 5 — Best Performers</span>}
           sub="Meetings where your score drove the conversation"
           items={topPerformers}
-          color="#00C48C"
+          color="var(--green)"
           rankType="top"
         />
         <ScoreCards
-          title="📉 Bottom 5 — Needs Improvement"
+          title={<span style={{ display: 'flex', alignItems: 'center', gap: 6 }}><TrendingDown size={16} /> Bottom 5 — Needs Improvement</span>}
           sub="Meetings where you should reconsider approach"
           items={needsImprovement}
-          color="#FF3B5C"
+          color="var(--red)"
           rankType="bad"
           showReason
         />

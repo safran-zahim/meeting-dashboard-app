@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ClipboardList, Smile, Meh, Frown, HelpCircle, MessageSquare, Users, Mic, GitMerge } from 'lucide-react';
 
 const TYPE_COLORS = {
   standup: '#3B82F6', '1:1': '#00C48C', planning: '#EC4899',
@@ -11,15 +12,15 @@ const TYPE_COLORS = {
 const ROLE_STYLES = {
   facilitator: { bg: 'rgba(255,102,0,0.15)', color: '#FF6600' },
   contributor: { bg: 'rgba(0,196,140,0.15)', color: '#00C48C' },
-  observer:    { bg: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.35)' },
-  dominator:   { bg: 'rgba(255,59,92,0.15)', color: '#FF3B5C' },
+  observer: { bg: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.35)' },
+  dominator: { bg: 'rgba(255,59,92,0.15)', color: '#FF3B5C' },
 };
 
 const SENTIMENT_STYLES = {
-  positive: { icon: '😊', color: '#00C48C' },
-  neutral:  { icon: '😐', color: 'rgba(255,255,255,0.4)' },
-  negative: { icon: '😟', color: '#FF3B5C' },
-  mixed:    { icon: '🤔', color: '#FFB800' },
+  positive: { icon: <Smile size={12} />, color: 'var(--green)' },
+  neutral: { icon: <Meh size={12} />, color: 'var(--muted)' },
+  negative: { icon: <Frown size={12} />, color: 'var(--red)' },
+  mixed: { icon: <HelpCircle size={12} />, color: 'var(--yellow)' },
 };
 
 function getTypeColor(type) {
@@ -57,11 +58,11 @@ function MeetingCard({ meeting }) {
             width: 36, height: 36, borderRadius: 10,
             background: `${typeColor}20`, border: `1px solid ${typeColor}40`,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 16,
-          }}>📋</div>
+            fontSize: 14, color: typeColor
+          }}><ClipboardList size={18} /></div>
           <div>
-            <div style={{ fontSize: 14, fontWeight: 700 }}>{meeting.summary}</div>
-            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', marginTop: 2 }}>
+            <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--text)' }}>{meeting.summary}</div>
+            <div style={{ fontSize: 11, color: 'var(--muted)', marginTop: 2, display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
               {formatDate(meeting.startTime)}
               <span style={{
                 marginLeft: 8, padding: '1px 7px', borderRadius: 4,
@@ -74,7 +75,7 @@ function MeetingCard({ meeting }) {
                 fontSize: 10, fontWeight: 600,
               }}>{meeting.duration}min · {meeting.attendeeCount} attendees</span>
               <span style={{
-                marginLeft: 6, color: sentiment.color, fontSize: 10,
+                marginLeft: 6, color: sentiment.color, fontSize: 10, display: 'flex', alignItems: 'center', gap: 4
               }}>{sentiment.icon} {meeting.sentiment}</span>
             </div>
           </div>
@@ -137,7 +138,7 @@ function MeetingCard({ meeting }) {
                     width: 22, flexShrink: 0,
                   }}>{String(i + 1).padStart(2, '0')}</span>
 
-                  <span style={{ fontSize: 13, fontWeight: 600, flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  <span style={{ fontSize: 13, fontWeight: 600, flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', color: 'var(--text)' }}>
                     {p.name}
                   </span>
 
@@ -150,35 +151,36 @@ function MeetingCard({ meeting }) {
 
                   {p.speaking > 0 && (
                     <span style={{
-                      fontSize: 11, color: 'rgba(255,255,255,0.4)',
+                      fontSize: 11, color: 'var(--muted)',
                       fontFamily: "'DM Mono', monospace",
-                    }}>🗣 {p.speaking}min</span>
+                      display: 'flex', alignItems: 'center', gap: 4
+                    }}><Mic size={12} /> {p.speaking}min</span>
                   )}
                 </div>
 
                 {p.feedback && (
                   <div style={{
                     marginTop: 4, marginLeft: 32,
-                    fontSize: 11, color: 'rgba(255,255,255,0.35)',
+                    fontSize: 11, color: 'var(--muted)',
                     fontStyle: 'italic', lineHeight: 1.4,
+                    display: 'flex', gap: 6, alignItems: 'flex-start'
                   }}>
-                    💬 {p.feedback}
+                    <MessageSquare size={12} style={{ marginTop: 2, flexShrink: 0 }} /> <span>{p.feedback}</span>
                   </div>
                 )}
               </div>
             );
           })}
 
-          {/* Footer strip */}
           <div style={{
             display: 'flex', alignItems: 'center', gap: 16, marginTop: 10,
             padding: '8px 12px', borderRadius: 8,
-            background: 'rgba(255,255,255,0.03)',
-            fontSize: 11, color: 'rgba(255,255,255,0.35)',
+            background: 'var(--surface2)',
+            fontSize: 11, color: 'var(--muted)', border: '1px solid var(--border)'
           }}>
-            <span>👥 {meeting.participants.length} participants</span>
-            <span>🗣 {Math.round(meeting.participants.reduce((s, p) => s + p.speaking, 0))}min speaking</span>
-            <span>🔀 {meeting.participants.reduce((s, p) => s + p.decisions, 0)} decisions</span>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><Users size={12} /> {meeting.participants.length} participants</span>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><Mic size={12} /> {Math.round(meeting.participants.reduce((s, p) => s + p.speaking, 0))}min speaking</span>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><GitMerge size={12} /> {meeting.participants.reduce((s, p) => s + p.decisions, 0)} decisions</span>
           </div>
         </div>
       )}
@@ -193,10 +195,10 @@ export default function TeamInsights({ teamInsights }) {
 
   return (
     <div>
-      <div className="card-title" style={{ marginBottom: 6, fontSize: 14 }}>
-        👥 Team Insights — By Meeting
+      <div className="card-title" style={{ marginBottom: 6, fontSize: 14, display: 'flex', alignItems: 'center', gap: 8 }}>
+        <Users size={16} /> Team Insights — By Meeting
       </div>
-      <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', marginBottom: 20 }}>
+      <div style={{ fontSize: 11, color: 'var(--muted)', marginBottom: 20 }}>
         Summary of each meeting with participant roles and AI feedback
       </div>
       {teamInsights.map((meeting) => (
