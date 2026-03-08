@@ -285,10 +285,10 @@ function OverviewTab() {
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-              <XAxis dataKey="week" stroke="var(--muted)" tick={{ fontSize: 11 }} />
-              <YAxis stroke="var(--muted)" tick={{ fontSize: 10 }} />
+              <XAxis dataKey="week" stroke="var(--muted)" tick={{ fontSize: 12 }} />
+              <YAxis stroke="var(--muted)" tick={{ fontSize: 12 }} />
               <Tooltip content={<CTip />} />
-              <Legend wrapperStyle={{ fontSize: 11 }} />
+              <Legend wrapperStyle={{ fontSize: 12 }} />
               <Area type="monotone" dataKey="calls" name="Total Calls" stroke="var(--blue)" fill="none" strokeDasharray="4 2" strokeWidth={2} />
               <Area type="monotone" dataKey="won" name="Won" stroke="var(--green)" fill="url(#s1-gw)" strokeWidth={2} />
               <Area type="monotone" dataKey="lost" name="Lost" stroke="var(--red)" fill="url(#s1-gl)" strokeWidth={2} />
@@ -314,8 +314,8 @@ function OverviewTab() {
           <ResponsiveContainer width="100%" height={230}>
             <ScatterChart margin={{ top: 10, right: 10, bottom: 20, left: 0 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-              <XAxis dataKey="x" type="number" name="Duration" stroke="var(--muted)" tick={{ fontSize: 10 }} />
-              <YAxis dataKey="y" type="number" domain={[30, 100]} stroke="var(--muted)" tick={{ fontSize: 10 }} />
+              <XAxis dataKey="x" type="number" name="Duration" stroke="var(--muted)" tick={{ fontSize: 12 }} />
+              <YAxis dataKey="y" type="number" domain={[30, 100]} stroke="var(--muted)" tick={{ fontSize: 12 }} />
               <Tooltip
                 cursor={{ strokeDasharray: '3 3' }}
                 content={({ active, payload }) => {
@@ -324,15 +324,15 @@ function OverviewTab() {
                   return (
                     <div className="scenario1-tooltip">
                       <div style={{ color: 'var(--text)', fontWeight: 600, fontSize: 12 }}>{d.name}</div>
-                      <div style={{ color: 'var(--muted)', fontSize: 11 }}>{d.x} min · score {d.y}</div>
-                      <div style={{ color: d.o === 'won' ? 'var(--green)' : 'var(--red)', fontSize: 11, display: 'flex', alignItems: 'center', gap: 4 }}>{d.o === 'won' ? <><Check size={12} /> Won</> : <><X size={12} /> Lost</>} · {fmt(d.v)}</div>
+                      <div style={{ color: 'var(--muted)', fontSize: 12 }}>{d.x} min · score {d.y}</div>
+                      <div style={{ color: d.o === 'won' ? 'var(--green)' : 'var(--red)', fontSize: 12, display: 'flex', alignItems: 'center', gap: 4 }}>{d.o === 'won' ? <><Check size={12} /> Won</> : <><X size={12} /> Lost</>} · {fmt(d.v)}</div>
                     </div>
                   );
                 }}
               />
               <Scatter name="Won" data={won} fill="var(--green)" opacity={0.85} r={6} />
               <Scatter name="Lost" data={lost} fill="var(--red)" opacity={0.85} r={6} />
-              <Legend wrapperStyle={{ fontSize: 11 }} />
+              <Legend wrapperStyle={{ fontSize: 12 }} />
             </ScatterChart>
           </ResponsiveContainer>
         </Card>
@@ -349,7 +349,7 @@ function OverviewTab() {
                   <div key={k.word} style={{ marginBottom: 8 }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
                       <span style={{ color: 'var(--text)', fontSize: 12 }}>{k.word}</span>
-                      <span style={{ color: 'var(--muted)', fontSize: 10, fontFamily: 'monospace' }}>{k.freq}×</span>
+                      <span style={{ color: 'var(--muted)', fontSize: 12, fontFamily: 'monospace' }}>{k.freq}×</span>
                     </div>
                     <div className="scenario1-pct-track">
                       <div style={{ width: `${(k.freq / col.max) * 100}%`, height: '100%', background: col.color, borderRadius: 2 }} />
@@ -397,7 +397,7 @@ function WonDealsTab() {
                 <span style={{ color: 'var(--green)', fontSize: 12, fontFamily: 'monospace' }}>{r.pct}%</span>
               </div>
               <PctBar pct={r.pct} color={T.green} />
-              <div style={{ color: 'var(--muted)', fontSize: 11, marginTop: 3 }}>In {r.count} of 9 won deals</div>
+              <div style={{ color: 'var(--muted)', fontSize: 12, marginTop: 3 }}>In {r.count} of 9 won deals</div>
             </div>
           ))}
         </Card>
@@ -412,9 +412,9 @@ function WonDealsTab() {
                     <stop offset="100%" stopColor="#00C48C" stopOpacity={0.12} />
                   </radialGradient>
                 </defs>
-                <PolarGrid stroke="rgba(255,255,255,0.18)" strokeWidth={1.2} />
-                <PolarAngleAxis dataKey="metric" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 11, fontWeight: 600 }} />
-                <Radar name="Won Deals" dataKey="val" stroke="#00E5A8" strokeWidth={2.5} fill="url(#scenario1-radar-gradient-green)" fillOpacity={1} isAnimationActive animationDuration={1200} animationEasing="ease-out" />
+                <PolarGrid stroke="var(--overlay-20)" strokeWidth={1.2} />
+                <PolarAngleAxis dataKey="metric" tick={{ fill: 'var(--text2)', fontSize: 12, fontWeight: 600 }} />
+                <Radar name="Won Deals" dataKey="val" stroke="var(--green)" strokeWidth={2.5} fill="url(#scenario1-radar-gradient-green)" fillOpacity={1} isAnimationActive animationDuration={1200} animationEasing="ease-out" />
               </RadarChart>
             </ResponsiveContainer>
           </div>
@@ -447,7 +447,7 @@ function WonDealsTab() {
                     <td style={{ fontFamily: 'monospace' }}>{c.duration}m</td>
                     <td><ScoreBar score={c.score} /></td>
                     <td style={{ color: c.talkRatio < 50 ? 'var(--green)' : 'var(--red)', fontFamily: 'monospace' }}>{c.talkRatio}%</td>
-                    <td style={{ color: 'var(--muted)', fontSize: 11 }}>{WIN_FACTORS[c.id] || '—'}</td>
+                    <td style={{ color: 'var(--muted)', fontSize: 12 }}>{WIN_FACTORS[c.id] || '—'}</td>
                   </tr>
                 );
               })}
@@ -478,7 +478,7 @@ function LostDealsTab() {
                 <span style={{ color: 'var(--red)', fontSize: 12, fontFamily: 'monospace' }}>{r.pct}%</span>
               </div>
               <PctBar pct={r.pct} color={T.red} />
-              <div style={{ color: 'var(--muted)', fontSize: 11, marginTop: 3 }}>In {r.count} of 7 lost deals</div>
+              <div style={{ color: 'var(--muted)', fontSize: 12, marginTop: 3 }}>In {r.count} of 7 lost deals</div>
             </div>
           ))}
         </Card>
@@ -487,8 +487,8 @@ function LostDealsTab() {
           <ResponsiveContainer width="100%" height={240}>
             <BarChart data={timeData} layout="vertical">
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" horizontal={false} />
-              <XAxis type="number" stroke="var(--muted)" tick={{ fontSize: 10 }} unit=" min" />
-              <YAxis type="category" dataKey="name" stroke="var(--muted)" tick={{ fontSize: 11 }} width={55} />
+              <XAxis type="number" stroke="var(--muted)" tick={{ fontSize: 12 }} unit=" min" />
+              <YAxis type="category" dataKey="name" stroke="var(--muted)" tick={{ fontSize: 12 }} width={55} />
               <Tooltip content={({ active, payload, label }) => {
                 if (!active || !payload?.length) return null;
                 return (
@@ -530,10 +530,10 @@ function LostDealsTab() {
                     <td style={{ color: 'var(--red)', fontFamily: 'monospace' }}>{fmt(c.dealValue)}</td>
                     <td>
                       <span style={{ color: c.duration > 70 ? 'var(--red)' : 'var(--orange)', fontFamily: 'monospace' }}>{c.duration}m</span>
-                      {c.duration > 70 && <span style={{ color: 'var(--red)', fontSize: 10, marginLeft: 4 }}>⚠</span>}
+                      {c.duration > 70 && <span style={{ color: 'var(--red)', fontSize: 12, marginLeft: 4 }}>⚠</span>}
                     </td>
                     <td><ScoreBar score={c.score} /></td>
-                    <td style={{ color: 'var(--muted)', fontSize: 11, maxWidth: 180 }}>{reason}</td>
+                    <td style={{ color: 'var(--muted)', fontSize: 12, maxWidth: 180 }}>{reason}</td>
                     <td>
                       <div className="scenario1-improvement-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><Lightbulb size={12} /> {improvement}</div>
                     </td>
@@ -580,12 +580,12 @@ function RepPerformanceTab() {
                 <Avatar initials={r.avatar} color={active ? T.gold : 'var(--muted)'} />
                 <div>
                   <div style={{ color: active ? 'var(--text)' : 'var(--muted)', fontSize: 12, fontWeight: 600 }}>{r.name.split(' ')[0]}</div>
-                  <div style={{ color: 'var(--muted)', fontSize: 10 }}>{r.tier}</div>
+                  <div style={{ color: 'var(--muted)', fontSize: 12 }}>{r.tier}</div>
                 </div>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <span style={{ color: 'var(--green)', fontSize: 14, fontWeight: 700 }}>{s.winRate}%</span>
-                <span style={{ color: 'var(--muted)', fontSize: 11 }}>Score: {s.avgScore}</span>
+                <span style={{ color: 'var(--muted)', fontSize: 12 }}>Score: {s.avgScore}</span>
               </div>
             </button>
           );
@@ -599,7 +599,7 @@ function RepPerformanceTab() {
           { label: 'Avg Talk Ratio', value: `${stats.avgTalk}%`, color: stats.avgTalk < 50 ? T.green : T.red },
         ].map((k, i) => (
           <div key={i} className="scenario1-mini-kpi" style={{ borderColor: 'var(--border)' }}>
-            <div style={{ color: 'var(--muted)', fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 4 }}>{k.label}</div>
+            <div style={{ color: 'var(--muted)', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 4 }}>{k.label}</div>
             <div style={{ color: k.color, fontSize: 24, fontWeight: 700 }}>{k.value}</div>
           </div>
         ))}
@@ -616,9 +616,9 @@ function RepPerformanceTab() {
                     <stop offset="100%" stopColor="#FF8C3A" stopOpacity={0.15} />
                   </radialGradient>
                 </defs>
-                <PolarGrid stroke="rgba(255,255,255,0.18)" strokeWidth={1.2} />
-                <PolarAngleAxis dataKey="metric" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 11, fontWeight: 600 }} />
-                <Radar name={rep.name} dataKey="val" stroke="#FF7A1A" strokeWidth={2.5} fill="url(#scenario1-radar-gradient-orange)" fillOpacity={1} isAnimationActive animationDuration={1400} animationEasing="ease-out" animationBegin={100} />
+                <PolarGrid stroke="var(--overlay-20)" strokeWidth={1.2} />
+                <PolarAngleAxis dataKey="metric" tick={{ fill: 'var(--text2)', fontSize: 12, fontWeight: 600 }} />
+                <Radar name={rep.name} dataKey="val" stroke="var(--orange)" strokeWidth={2.5} fill="url(#scenario1-radar-gradient-orange)" fillOpacity={1} isAnimationActive animationDuration={1400} animationEasing="ease-out" animationBegin={100} />
               </RadarChart>
             </ResponsiveContainer>
           </div>
@@ -631,11 +631,11 @@ function RepPerformanceTab() {
                 <span style={{ fontSize: 14, color: c.outcome === 'won' ? 'var(--green)' : 'var(--red)' }}>{c.outcome === 'won' ? <Check size={16} /> : <X size={16} />}</span>
                 <div style={{ flex: 1 }}>
                   <div style={{ color: 'var(--text)', fontSize: 13, fontWeight: 600 }}>{c.prospect}</div>
-                  <div style={{ color: 'var(--muted)', fontSize: 11, marginTop: 2 }}>{c.date} · {c.duration}m · talk {c.talkRatio}%</div>
+                  <div style={{ color: 'var(--muted)', fontSize: 12, marginTop: 2 }}>{c.date} · {c.duration}m · talk {c.talkRatio}%</div>
                 </div>
                 <div style={{ textAlign: 'right' }}>
                   <div style={{ color: c.outcome === 'won' ? 'var(--green)' : 'var(--red)', fontFamily: 'monospace', fontSize: 13 }}>{fmt(c.dealValue)}</div>
-                  <div style={{ color: 'var(--muted)', fontSize: 11 }}>Score {c.score}</div>
+                  <div style={{ color: 'var(--muted)', fontSize: 12 }}>Score {c.score}</div>
                 </div>
               </div>
             ))}
@@ -647,10 +647,10 @@ function RepPerformanceTab() {
         <ResponsiveContainer width="100%" height={210}>
           <BarChart data={OBJECTIONS}>
             <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-            <XAxis dataKey="objection" stroke="var(--muted)" tick={{ fontSize: 11 }} />
-            <YAxis domain={[0, 100]} stroke="var(--muted)" tick={{ fontSize: 10 }} />
+            <XAxis dataKey="objection" stroke="var(--muted)" tick={{ fontSize: 12 }} />
+            <YAxis domain={[0, 100]} stroke="var(--muted)" tick={{ fontSize: 12 }} />
             <Tooltip content={<CTip suffix="%" />} />
-            <Legend wrapperStyle={{ fontSize: 11 }} />
+            <Legend wrapperStyle={{ fontSize: 12 }} />
             {REPS.map((r, i) => (
               <Bar key={r.id} dataKey={repKeys[i]} name={r.name.split(' ')[0]} fill={repColors[i]} radius={[3, 3, 0, 0]} />
             ))}
@@ -684,7 +684,7 @@ function CoachingTab() {
                   <span style={{ color: 'var(--muted)', fontSize: 12 }}> · </span>
                   <span style={{ color: 'var(--text)', fontSize: 13 }}>{m.mistake}</span>
                 </div>
-                <span style={{ color: 'var(--muted)', fontSize: 11, whiteSpace: 'nowrap' }}>{m.calls} call{m.calls > 1 ? 's' : ''}</span>
+                <span style={{ color: 'var(--muted)', fontSize: 12, whiteSpace: 'nowrap' }}>{m.calls} call{m.calls > 1 ? 's' : ''}</span>
               </div>
             );
           })}
@@ -700,21 +700,21 @@ function CoachingTab() {
                 <Avatar initials={r.avatar} color={T.gold} />
                 <div style={{ flex: 1 }}>
                   <div style={{ color: 'var(--text)', fontSize: 14, fontWeight: 700 }}>{r.name}</div>
-                  <div style={{ color: 'var(--muted)', fontSize: 11 }}>{r.tier} · Score {s.avgScore} · {s.winRate}% win rate</div>
+                  <div style={{ color: 'var(--muted)', fontSize: 12 }}>{r.tier} · Score {s.avgScore} · {s.winRate}% win rate</div>
                 </div>
                 <ScoreRing score={s.avgScore} />
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
                 <div>
-                  <div style={{ color: 'var(--green)', fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', marginBottom: 8 }}>✓ STRENGTHS</div>
+                  <div style={{ color: 'var(--green)', fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', marginBottom: 8 }}>✓ STRENGTHS</div>
                   {c.strengths.map((str, j) => (
-                    <div key={j} style={{ color: 'var(--text2)', fontSize: 11, marginBottom: 5, paddingLeft: 8, borderLeft: '2px solid var(--green)' }}>{str}</div>
+                    <div key={j} style={{ color: 'var(--text2)', fontSize: 12, marginBottom: 5, paddingLeft: 8, borderLeft: '2px solid var(--green)' }}>{str}</div>
                   ))}
                 </div>
                 <div>
-                  <div style={{ color: 'var(--red)', fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', marginBottom: 8 }}>↑ FOCUS AREAS</div>
+                  <div style={{ color: 'var(--red)', fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', marginBottom: 8 }}>↑ FOCUS AREAS</div>
                   {c.focus.map((f, j) => (
-                    <div key={j} style={{ color: 'var(--text2)', fontSize: 11, marginBottom: 5, paddingLeft: 8, borderLeft: '2px solid var(--red)' }}>{f}</div>
+                    <div key={j} style={{ color: 'var(--text2)', fontSize: 12, marginBottom: 5, paddingLeft: 8, borderLeft: '2px solid var(--red)' }}>{f}</div>
                   ))}
                 </div>
               </div>
@@ -727,17 +727,17 @@ function CoachingTab() {
         <ResponsiveContainer width="100%" height={190}>
           <BarChart data={talkData} layout="vertical" barSize={18}>
             <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" horizontal={false} />
-            <XAxis type="number" domain={[0, 100]} stroke="var(--muted)" tick={{ fontSize: 10 }} unit="%" />
-            <YAxis type="category" dataKey="name" stroke="var(--muted)" tick={{ fontSize: 11 }} width={55} />
+            <XAxis type="number" domain={[0, 100]} stroke="var(--muted)" tick={{ fontSize: 12 }} unit="%" />
+            <YAxis type="category" dataKey="name" stroke="var(--muted)" tick={{ fontSize: 12 }} width={55} />
             <Tooltip content={<CTip suffix="%" />} />
-            <Legend wrapperStyle={{ fontSize: 11 }} />
+            <Legend wrapperStyle={{ fontSize: 12 }} />
             <Bar dataKey="rep" name="Rep Talks" stackId="a" fill="var(--red)" />
             <Bar dataKey="prospect" name="Prospect Talks" stackId="a" fill="var(--green)" radius={[0, 4, 4, 0]} />
           </BarChart>
         </ResponsiveContainer>
         <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginTop: 10 }}>
           <div style={{ height: 2, flex: 1, background: `repeating-linear-gradient(90deg, var(--orange) 0, var(--orange) 6px, transparent 6px, transparent 12px)` }} />
-          <span style={{ color: 'var(--orange)', fontSize: 11, whiteSpace: 'nowrap' }}>40% rep / 60% prospect = ideal benchmark</span>
+          <span style={{ color: 'var(--orange)', fontSize: 12, whiteSpace: 'nowrap' }}>40% rep / 60% prospect = ideal benchmark</span>
           <div style={{ height: 2, flex: 1, background: `repeating-linear-gradient(90deg, var(--orange) 0, var(--orange) 6px, transparent 6px, transparent 12px)` }} />
         </div>
       </Card>

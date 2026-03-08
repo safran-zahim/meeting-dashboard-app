@@ -42,7 +42,7 @@ function AttendanceSummaryBanner({ attendanceRecs, ownerInsights }) {
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
         {skippable.map((r, i) => (
           <span key={i} style={{
-            padding: '3px 10px', borderRadius: 6, fontSize: 11, fontWeight: 600,
+            padding: '3px 10px', borderRadius: 6, fontSize: 12, fontWeight: 600,
             background: 'rgba(255,59,92,0.15)', color: '#FF3B5C',
             border: '1px solid rgba(255,59,92,0.25)',
           }}>

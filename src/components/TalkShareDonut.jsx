@@ -38,7 +38,7 @@ export default function TalkShareDonut({ breakdown, effective }) {
             fontFamily: "'DM Mono', monospace",
           }}>{effective}%</div>
           <div style={{
-            fontSize: 9, color: 'var(--muted)',
+            fontSize: 12, color: 'var(--muted)',
             letterSpacing: '0.08em',
           }}>EFFECTIVE</div>
         </div>
@@ -51,13 +51,13 @@ export default function TalkShareDonut({ breakdown, effective }) {
           }}>
             <div style={{
               display: 'flex', alignItems: 'center', gap: 6,
-              fontSize: 11, color: 'var(--text)',
+              fontSize: 12, color: 'var(--text)',
             }}>
               <div style={{ width: 8, height: 8, borderRadius: 2, background: e.color }} />
               {e.name}
             </div>
             <div style={{
-              fontSize: 11, fontWeight: 700, color: 'var(--text)',
+              fontSize: 12, fontWeight: 700, color: 'var(--text)',
               fontFamily: "'DM Mono', monospace",
             }}>{e.value}%</div>
           </div>

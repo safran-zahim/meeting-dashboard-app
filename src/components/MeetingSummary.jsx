@@ -60,9 +60,9 @@ function SkillBar({ skill }) {
         <span style={{
           fontSize: 12, fontWeight: 700, color,
           fontFamily: "'DM Mono', monospace",
-        }}>{skill.score}<span style={{ color: 'rgba(255,255,255,0.25)' }}>/100</span></span>
+        }}>{skill.score}<span style={{ color: 'var(--overlay-25)' }}>/100</span></span>
       </div>
-      <div style={{ height: 6, background: 'rgba(255,255,255,0.06)', borderRadius: 3 }}>
+      <div style={{ height: 6, background: 'var(--overlay-06)', borderRadius: 3 }}>
         <div style={{
           width: `${Math.min(skill.score, 100)}%`, height: '100%',
           background: color, borderRadius: 3,
@@ -98,13 +98,13 @@ function SelfEvaluation({ ownerInsights }) {
           }}>
             <div style={{
               width: 58, height: 58, borderRadius: '50%',
-              background: 'var(--card-bg)', display: 'flex', flexDirection: 'column',
+              background: 'var(--surface)', display: 'flex', flexDirection: 'column',
               alignItems: 'center', justifyContent: 'center',
             }}>
-              <div style={{ fontSize: 22, fontWeight: 800, color: sc, fontFamily: "'DM Mono', monospace", lineHeight: 1 }}>
+              <div style={{ fontSize: 22, fontWeight: 800, color: 'var(--text)', fontFamily: "'DM Mono', monospace", lineHeight: 1 }}>
                 {o.avgContributionScore}
               </div>
-              <div style={{ fontSize: 8, fontWeight: 700, color: sc, letterSpacing: '0.08em' }}>
+              <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--text)', letterSpacing: '0.08em' }}>
                 {scoreLabel(o.avgContributionScore)}
               </div>
             </div>
@@ -112,7 +112,7 @@ function SelfEvaluation({ ownerInsights }) {
 
           <div>
             <div style={{ fontSize: 14, fontWeight: 700 }}>Overall Meeting Performance</div>
-            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginTop: 3 }}>
+            <div style={{ fontSize: 12, color: 'var(--overlay-40)', marginTop: 3 }}>
               {o.rank > 0 && <>Rank <strong style={{ color: 'var(--orange)' }}>#{o.rank}</strong> of {o.totalParticipants} participants · </>}
               {o.totalMeetings} meetings attended · {o.totalSpeaking}min speaking
             </div>
@@ -134,7 +134,7 @@ function SelfEvaluation({ ownerInsights }) {
             <div className="owner-stat-label">Decisions<br />{o.decisionRatio}% ratio</div>
           </div>
           <div className="owner-stat">
-            <div className="owner-stat-value" style={{ color: sc, fontSize: 18 }}>{o.avgContributionScore}<span style={{ fontSize: 11, color: 'rgba(255,255,255,0.3)' }}>/100</span></div>
+            <div className="owner-stat-value" style={{ color: sc, fontSize: 18 }}>{o.avgContributionScore}<span style={{ fontSize: 12, color: 'var(--overlay-30)' }}>/100</span></div>
             <div className="owner-stat-label">Avg Score<br />{o.primaryRole}</div>
           </div>
         </div>
@@ -162,7 +162,7 @@ function SelfEvaluation({ ownerInsights }) {
                   background: 'rgba(0,196,140,0.06)', borderLeft: '3px solid #00C48C',
                 }}>
                   <div style={{ fontSize: 13, fontWeight: 700 }}>{s.title}</div>
-                  <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginTop: 3 }}>{s.detail}</div>
+                  <div style={{ fontSize: 12, color: 'var(--overlay-40)', marginTop: 3 }}>{s.detail}</div>
                 </div>
               ))}
             </div>
@@ -180,7 +180,7 @@ function SelfEvaluation({ ownerInsights }) {
                   background: 'rgba(255,184,0,0.06)', borderLeft: '3px solid #FFB800',
                 }}>
                   <div style={{ fontSize: 13, fontWeight: 700 }}>{im.title}</div>
-                  <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginTop: 3 }}>{im.detail}</div>
+                  <div style={{ fontSize: 12, color: 'var(--overlay-40)', marginTop: 3 }}>{im.detail}</div>
                 </div>
               ))}
             </div>
@@ -192,11 +192,11 @@ function SelfEvaluation({ ownerInsights }) {
               background: 'var(--orange-bg)',
               border: '1px solid rgba(255,102,0,0.15)',
             }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--orange)', marginBottom: 4, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+              <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--orange)', marginBottom: 4, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                 #1 Focus for Next Week
               </div>
               <div style={{ fontSize: 13, fontWeight: 700 }}>{o.focusArea.title}</div>
-              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.45)', marginTop: 3 }}>{o.focusArea.detail}</div>
+              <div style={{ fontSize: 12, color: 'var(--overlay-45)', marginTop: 3 }}>{o.focusArea.detail}</div>
             </div>
           )}
         </div>
@@ -209,22 +209,22 @@ function SelfEvaluation({ ownerInsights }) {
           {o.ownerMeetingFeedback.map((mf, i) => (
             <div key={i} style={{
               padding: '10px 12px', borderRadius: 8, marginBottom: 6,
-              background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)',
+              background: 'var(--overlay-02)', border: '1px solid var(--overlay-05)',
             }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
                 <div style={{ fontSize: 12, fontWeight: 700 }}>{mf.meeting}</div>
                 <span style={{
-                  fontSize: 9, fontWeight: 700, padding: '2px 7px', borderRadius: 4,
+                  fontSize: 12, fontWeight: 700, padding: '2px 7px', borderRadius: 4,
                   background: `${getTypeColor(mf.type)}20`, color: getTypeColor(mf.type),
                 }}>{mf.type}</span>
               </div>
               {mf.feedback && (
-                <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.45)', lineHeight: 1.5, marginBottom: 3, display: 'flex', gap: 6 }}>
+                <div style={{ fontSize: 12, color: 'var(--overlay-45)', lineHeight: 1.5, marginBottom: 3, display: 'flex', gap: 6 }}>
                   <MessageSquare size={12} style={{ flexShrink: 0, marginTop: 2 }} /> <span>{mf.feedback}</span>
                 </div>
               )}
               {mf.ownerAdvice && mf.ownerAdvice !== mf.feedback && (
-                <div style={{ fontSize: 11, color: 'var(--orange)', lineHeight: 1.5, display: 'flex', gap: 6 }}>
+                <div style={{ fontSize: 12, color: 'var(--orange)', lineHeight: 1.5, display: 'flex', gap: 6 }}>
                   <Target size={12} style={{ flexShrink: 0, marginTop: 2 }} /> <span>{mf.ownerAdvice}</span>
                 </div>
               )}
@@ -243,7 +243,7 @@ function SelfEvaluation({ ownerInsights }) {
           <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 4, color: '#FF3B5C' }}>
             You could skip {o.meetingsToSkip} meeting{o.meetingsToSkip > 1 ? 's' : ''} and recover ~{o.hoursRecoverable}h
           </div>
-          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)' }}>
+          <div style={{ fontSize: 12, color: 'var(--overlay-40)' }}>
             Based on your contribution patterns, these meetings add little value for you specifically.
           </div>
         </div>
@@ -296,12 +296,12 @@ function MeetingDetailCard({ meeting, initialExpanded = false }) {
             <div style={{ fontSize: 13, fontWeight: 700, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
               {meeting.summary}
             </div>
-            <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.35)', marginTop: 2, display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
+            <div style={{ fontSize: 12, color: 'var(--overlay-50)', marginTop: 2, display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
               {formatDateTime(meeting.startTime)}
               <span style={{
                 padding: '1px 6px', borderRadius: 4,
                 background: `${typeColor}20`, color: typeColor,
-                fontSize: 9, fontWeight: 700,
+                fontSize: 12, fontWeight: 700,
               }}>{meeting.type}</span>
               <span>{meeting.duration}min</span>
               {meeting.isRecurring && <span style={{ color: 'var(--blue)', display: 'flex', alignItems: 'center', gap: 4 }}><Repeat size={10} /> Recurring</span>}
@@ -320,7 +320,7 @@ function MeetingDetailCard({ meeting, initialExpanded = false }) {
       </div>
 
       {expanded && (
-        <div style={{ marginTop: 16, paddingTop: 14, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <div style={{ marginTop: 16, paddingTop: 14, borderTop: '1px solid var(--overlay-06)' }}>
           <div className="meeting-detail-grid">
             <div className="detail-metric">
               <span className="detail-metric-label">Meeting Score</span>
@@ -358,7 +358,7 @@ function MeetingDetailCard({ meeting, initialExpanded = false }) {
 
           {meeting.ownerFeedback && (
             <div className="detail-feedback">
-              <div style={{ fontWeight: 700, fontSize: 11, marginBottom: 4, color: 'var(--orange)' }}>
+              <div style={{ fontWeight: 700, fontSize: 12, marginBottom: 4, color: 'var(--orange)' }}>
                 Personalized Advice
               </div>
               {meeting.ownerFeedback}
@@ -367,7 +367,7 @@ function MeetingDetailCard({ meeting, initialExpanded = false }) {
 
           {meeting.qualitySummary && (
             <div className="detail-quality">
-              <div style={{ fontWeight: 700, fontSize: 11, marginBottom: 4, color: 'rgba(255,255,255,0.5)' }}>
+              <div style={{ fontWeight: 700, fontSize: 12, marginBottom: 4, color: 'var(--overlay-50)' }}>
                 Meeting Quality
               </div>
               {meeting.qualitySummary}
@@ -376,11 +376,11 @@ function MeetingDetailCard({ meeting, initialExpanded = false }) {
 
           {meeting.keyDecisions && meeting.keyDecisions.length > 0 && (
             <div className="detail-decisions">
-              <div style={{ fontWeight: 700, fontSize: 11, marginBottom: 6, color: '#00C48C' }}>
+              <div style={{ fontWeight: 700, fontSize: 12, marginBottom: 6, color: '#00C48C' }}>
                 Key Decisions ({meeting.keyDecisions.length})
               </div>
               {meeting.keyDecisions.map((d, i) => (
-                <div key={i} style={{ fontSize: 12, padding: '3px 0', color: 'rgba(255,255,255,0.6)' }}>
+                <div key={i} style={{ fontSize: 12, padding: '3px 0', color: 'var(--overlay-60)' }}>
                   • {typeof d === 'string' ? d : JSON.stringify(d)}
                 </div>
               ))}
@@ -406,7 +406,7 @@ export default function MeetingSummary({ meetings, ownerInsights, attendanceRecs
       <div className="card-title" style={{ marginBottom: 6, fontSize: 14, display: 'flex', alignItems: 'center', gap: 8 }}>
         <Search size={16} /> Individual Insights
       </div>
-      <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', marginBottom: 24 }}>
+      <div style={{ fontSize: 12, color: 'var(--overlay-35)', marginBottom: 24 }}>
         Personal self-evaluation across {meetings.length} meetings — skills, strengths, and actionable advice
       </div>
 
@@ -422,7 +422,7 @@ export default function MeetingSummary({ meetings, ownerInsights, attendanceRecs
           }}>
             <span style={{
               width: 28, height: 28, borderRadius: 8,
-              background: 'var(--red-bg, #FF3B5C18)', border: '1px solid var(--red-border, #FF3B5C33)',
+              background: 'var(--red-bg)', border: '1px solid var(--red-bg)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}><Ban size={14} color="var(--red)" /></span>
             Meetings You Can Skip ({skipMeetings.length})
@@ -439,7 +439,7 @@ export default function MeetingSummary({ meetings, ownerInsights, attendanceRecs
           }}>
             <span style={{
               width: 28, height: 28, borderRadius: 8,
-              background: 'var(--green-bg, #00C48C18)', border: '1px solid var(--green-border, #00C48C33)',
+              background: 'var(--green-bg)', border: '1px solid var(--green-bg)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}><CheckCircle size={14} color="var(--green)" /></span>
             Meetings Worth Attending ({attendMeetings.length})
@@ -451,10 +451,10 @@ export default function MeetingSummary({ meetings, ownerInsights, attendanceRecs
       <div style={{
         display: 'flex', alignItems: 'center', gap: 20, marginTop: 20,
         padding: '12px 14px', borderRadius: 8,
-        background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)',
-        fontSize: 11, color: 'rgba(255,255,255,0.4)',
+        background: 'var(--overlay-04)', border: '1px solid var(--overlay-06)',
+        fontSize: 12, color: 'var(--overlay-40)',
       }}>
-        <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><Calendar size={12} /> <strong style={{ color: 'rgba(255,255,255,0.6)' }}>{meetings.length}</strong> meetings</span>
+        <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><Calendar size={12} /> <strong style={{ color: 'var(--overlay-60)' }}>{meetings.length}</strong> meetings</span>
         <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><CheckCircle size={12} color="var(--green)" /> <strong style={{ color: 'var(--green)' }}>{attendMeetings.length}</strong> attend</span>
         <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><Ban size={12} color="var(--red)" /> <strong style={{ color: 'var(--red)' }}>{skipMeetings.length}</strong> skip/delegate</span>
         {ownerInsights && ownerInsights.hoursRecoverable > 0 && (

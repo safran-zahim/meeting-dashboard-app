@@ -12,7 +12,7 @@ const TYPE_COLORS = {
 const ROLE_STYLES = {
   facilitator: { bg: 'rgba(255,102,0,0.15)', color: '#FF6600' },
   contributor: { bg: 'rgba(0,196,140,0.15)', color: '#00C48C' },
-  observer: { bg: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.35)' },
+  observer: { bg: 'var(--overlay-06)', color: 'var(--overlay-40)' },
   dominator: { bg: 'rgba(255,59,92,0.15)', color: '#FF3B5C' },
 };
 
@@ -50,7 +50,7 @@ function MeetingCard({ meeting }) {
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           cursor: 'pointer', marginBottom: expanded ? 16 : 0,
           paddingBottom: expanded ? 14 : 0,
-          borderBottom: expanded ? '1px solid rgba(255,255,255,0.06)' : 'none',
+          borderBottom: expanded ? '1px solid var(--overlay-06)' : 'none',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
@@ -62,20 +62,20 @@ function MeetingCard({ meeting }) {
           }}><ClipboardList size={18} /></div>
           <div>
             <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--text)' }}>{meeting.summary}</div>
-            <div style={{ fontSize: 11, color: 'var(--muted)', marginTop: 2, display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+            <div style={{ fontSize: 13, color: 'var(--muted)', marginTop: 2, display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
               {formatDate(meeting.startTime)}
               <span style={{
                 marginLeft: 8, padding: '1px 7px', borderRadius: 4,
                 background: `${typeColor}20`, color: typeColor,
-                fontSize: 10, fontWeight: 700, letterSpacing: '0.05em',
+                fontSize: 13, fontWeight: 700, letterSpacing: '0.05em',
               }}>{meeting.type}</span>
               <span style={{
                 marginLeft: 6, padding: '1px 7px', borderRadius: 4,
-                background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.4)',
-                fontSize: 10, fontWeight: 600,
+                background: 'var(--overlay-06)', color: 'var(--overlay-40)',
+                fontSize: 13, fontWeight: 600,
               }}>{meeting.duration}min · {meeting.attendeeCount} attendees</span>
               <span style={{
-                marginLeft: 6, color: sentiment.color, fontSize: 10, display: 'flex', alignItems: 'center', gap: 4
+                marginLeft: 6, color: sentiment.color, fontSize: 13, display: 'flex', alignItems: 'center', gap: 4
               }}>{sentiment.icon} {meeting.sentiment}</span>
             </div>
           </div>
@@ -93,8 +93,8 @@ function MeetingCard({ meeting }) {
           {meeting.qualitySummary && (
             <div style={{
               padding: '12px 14px', borderRadius: 8, marginBottom: 14,
-              background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)',
-              fontSize: 12.5, color: 'rgba(255,255,255,0.55)', lineHeight: 1.6,
+              background: 'var(--overlay-04)', border: '1px solid var(--overlay-06)',
+              fontSize: 13, color: 'var(--overlay-60)', lineHeight: 1.6,
             }}>
               {meeting.qualitySummary}
             </div>
@@ -104,13 +104,13 @@ function MeetingCard({ meeting }) {
           {decisions.length > 0 && (
             <div style={{
               padding: '10px 14px', borderRadius: 8, marginBottom: 14,
-              background: 'rgba(0,196,140,0.05)', border: '1px solid rgba(0,196,140,0.1)',
+              background: 'var(--green-bg)', border: '1px solid rgba(0,196,140,0.15)',
             }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: '#00C48C', marginBottom: 6 }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--green)', marginBottom: 6 }}>
                 Key Decisions ({decisions.length})
               </div>
               {decisions.map((d, i) => (
-                <div key={i} style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', padding: '2px 0' }}>
+                <div key={i} style={{ fontSize: 13, color: 'var(--overlay-60)', padding: '2px 0' }}>
                   • {typeof d === 'string' ? d : JSON.stringify(d)}
                 </div>
               ))}
@@ -118,7 +118,7 @@ function MeetingCard({ meeting }) {
           )}
 
           {/* Participant list - summary style, no scores */}
-          <div style={{ fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.4)', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--overlay-40)', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
             Participants
           </div>
           {meeting.participants.map((p, i) => {
@@ -128,13 +128,13 @@ function MeetingCard({ meeting }) {
                 padding: '8px 10px', borderRadius: 6, marginBottom: 2,
                 transition: 'background 0.15s',
               }}
-                onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.04)'}
+                onMouseEnter={e => e.currentTarget.style.background = 'var(--overlay-04)'}
                 onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                   <span style={{
                     fontWeight: 800, color: 'var(--orange)',
-                    fontFamily: "'DM Mono', monospace", fontSize: 11,
+                    fontFamily: "'DM Mono', monospace", fontSize: 13,
                     width: 22, flexShrink: 0,
                   }}>{String(i + 1).padStart(2, '0')}</span>
 
@@ -144,14 +144,14 @@ function MeetingCard({ meeting }) {
 
                   <span style={{
                     padding: '2px 8px', borderRadius: 5,
-                    fontSize: 9, fontWeight: 700, letterSpacing: '0.04em',
+                    fontSize: 13, fontWeight: 700, letterSpacing: '0.04em',
                     fontFamily: "'DM Mono', monospace", textTransform: 'uppercase',
                     background: rs.bg, color: rs.color,
                   }}>{p.role}</span>
 
                   {p.speaking > 0 && (
                     <span style={{
-                      fontSize: 11, color: 'var(--muted)',
+                      fontSize: 13, color: 'var(--muted)',
                       fontFamily: "'DM Mono', monospace",
                       display: 'flex', alignItems: 'center', gap: 4
                     }}><Mic size={12} /> {p.speaking}min</span>
@@ -161,7 +161,7 @@ function MeetingCard({ meeting }) {
                 {p.feedback && (
                   <div style={{
                     marginTop: 4, marginLeft: 32,
-                    fontSize: 11, color: 'var(--muted)',
+                    fontSize: 13, color: 'var(--muted)',
                     fontStyle: 'italic', lineHeight: 1.4,
                     display: 'flex', gap: 6, alignItems: 'flex-start'
                   }}>
@@ -176,7 +176,7 @@ function MeetingCard({ meeting }) {
             display: 'flex', alignItems: 'center', gap: 16, marginTop: 10,
             padding: '8px 12px', borderRadius: 8,
             background: 'var(--surface2)',
-            fontSize: 11, color: 'var(--muted)', border: '1px solid var(--border)'
+            fontSize: 13, color: 'var(--muted)', border: '1px solid var(--border)'
           }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><Users size={12} /> {meeting.participants.length} participants</span>
             <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><Mic size={12} /> {Math.round(meeting.participants.reduce((s, p) => s + p.speaking, 0))}min speaking</span>
@@ -198,7 +198,7 @@ export default function TeamInsights({ teamInsights }) {
       <div className="card-title" style={{ marginBottom: 6, fontSize: 14, display: 'flex', alignItems: 'center', gap: 8 }}>
         <Users size={16} /> Team Insights — By Meeting
       </div>
-      <div style={{ fontSize: 11, color: 'var(--muted)', marginBottom: 20 }}>
+      <div style={{ fontSize: 13, color: 'var(--muted)', marginBottom: 20 }}>
         Summary of each meeting with participant roles and AI feedback
       </div>
       {teamInsights.map((meeting) => (

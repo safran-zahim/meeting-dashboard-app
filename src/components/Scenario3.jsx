@@ -347,8 +347,8 @@ export default function Scenario3({ onBack }) {
                       <div className="scenario3-panel-title">Skill Profile <span className="scenario3-badge">6 Dimensions</span></div>
                       <ResponsiveContainer width="100%" height={220}>
                         <RadarChart data={selectedMember.radarData}>
-                          <PolarGrid stroke="rgba(255,255,255,0.12)" />
-                          <PolarAngleAxis dataKey="skill" tick={{ fill: 'var(--text2)', fontSize: 9 }} />
+                          <PolarGrid stroke="var(--overlay-15)" />
+                          <PolarAngleAxis dataKey="skill" tick={{ fill: 'var(--text2)', fontSize: 12 }} />
                           <PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} />
                           <Radar name="Score" dataKey="val" stroke={T.orange} fill={T.orange} fillOpacity={0.15} strokeWidth={2} dot={{ fill: T.orange, r: 3 }} isAnimationActive animationDuration={1000} />
                         </RadarChart>
@@ -463,10 +463,10 @@ export default function Scenario3({ onBack }) {
                       <ResponsiveContainer width="100%" height={220}>
                         <LineChart data={TEAM_TRENDS}>
                           <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-                          <XAxis dataKey="week" tick={{ fill: 'var(--muted)', fontSize: 9 }} axisLine={false} tickLine={false} />
-                          <YAxis domain={[60, 100]} tick={{ fill: 'var(--muted)', fontSize: 9 }} axisLine={false} tickLine={false} />
+                          <XAxis dataKey="week" tick={{ fill: 'var(--muted)', fontSize: 12 }} axisLine={false} tickLine={false} />
+                          <YAxis domain={[60, 100]} tick={{ fill: 'var(--muted)', fontSize: 12 }} axisLine={false} tickLine={false} />
                           <Tooltip content={<CustomTooltip />} />
-                          <Legend wrapperStyle={{ fontSize: 9 }} />
+                          <Legend wrapperStyle={{ fontSize: 12 }} />
                           <Line type="monotone" dataKey="Sarah" stroke={T.orange} strokeWidth={2} dot={{ r: 3, fill: T.orange }} />
                           <Line type="monotone" dataKey="Marcus" stroke={T.purple} strokeWidth={2} dot={{ r: 3, fill: T.purple }} />
                           <Line type="monotone" dataKey="Priya" stroke={T.green} strokeWidth={2} dot={{ r: 3, fill: T.green }} />
@@ -479,8 +479,8 @@ export default function Scenario3({ onBack }) {
                       <ResponsiveContainer width="100%" height={180}>
                         <AreaChart data={SENTIMENT_TIMELINE}>
                           <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-                          <XAxis dataKey="date" tick={{ fill: 'var(--muted)', fontSize: 9 }} axisLine={false} tickLine={false} />
-                          <YAxis tick={{ fill: 'var(--muted)', fontSize: 9 }} axisLine={false} tickLine={false} />
+                          <XAxis dataKey="date" tick={{ fill: 'var(--muted)', fontSize: 12 }} axisLine={false} tickLine={false} />
+                          <YAxis tick={{ fill: 'var(--muted)', fontSize: 12 }} axisLine={false} tickLine={false} />
                           <Tooltip content={<CustomTooltip />} />
                           <Area type="monotone" dataKey="positive" stackId="1" stroke={T.green} fill={`${T.green}22`} strokeWidth={1.5} />
                           <Area type="monotone" dataKey="neutral" stackId="1" stroke={T.yellow} fill={`${T.yellow}22`} strokeWidth={1.5} />
@@ -517,8 +517,8 @@ export default function Scenario3({ onBack }) {
                       <ResponsiveContainer width="100%" height={180}>
                         <BarChart data={TOPIC_DIST} layout="vertical">
                           <CartesianGrid stroke="var(--border)" horizontal={false} />
-                          <XAxis type="number" tick={{ fill: 'var(--muted)', fontSize: 9 }} axisLine={false} tickLine={false} />
-                          <YAxis type="category" dataKey="topic" tick={{ fill: 'var(--text2)', fontSize: 9 }} axisLine={false} tickLine={false} width={90} />
+                          <XAxis type="number" tick={{ fill: 'var(--muted)', fontSize: 12 }} axisLine={false} tickLine={false} />
+                          <YAxis type="category" dataKey="topic" tick={{ fill: 'var(--text2)', fontSize: 12 }} axisLine={false} tickLine={false} width={90} />
                           <Tooltip content={<CustomTooltip />} />
                           <Bar dataKey="count" radius={[0, 6, 6, 0]} fill={T.orange} fillOpacity={0.7} />
                         </BarChart>
@@ -534,7 +534,7 @@ export default function Scenario3({ onBack }) {
                           { text: `Share positive reinforcement on ${selectedMember.strengths[0].toLowerCase()} in next team standup`, due: 'Immediate' },
                         ].map((a, i) => (
                           <div key={i} className="scenario3-cpo-item">
-                            <span className="scenario3-cpo-check" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Check size={14} color="white" /></span>
+                            <span className="scenario3-cpo-check" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Check size={14} color="var(--surface)" /></span>
                             <span className="scenario3-cpo-text">{a.text}</span>
                             <span className="scenario3-cpo-due">{a.due}</span>
                           </div>

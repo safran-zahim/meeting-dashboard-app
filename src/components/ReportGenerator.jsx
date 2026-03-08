@@ -25,7 +25,7 @@ const WIDTH = 1060;
 function SectionTitle({ children }) {
   return (
     <div style={{
-      fontSize: 20, fontWeight: 800, color: '#fff',
+      fontSize: 20, fontWeight: 800, color: 'var(--charcoal)',
       borderBottom: '2px solid #FF6600', paddingBottom: 8,
       marginBottom: 16, marginTop: 8,
     }}>
@@ -55,7 +55,7 @@ function CoverPage({ summary }) {
         background: 'rgba(255,102,0,0.08)', border: '1px solid rgba(255,102,0,0.2)',
       }}>
         <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: 4 }}>Analysis Period</div>
-        <div style={{ fontSize: 18, fontWeight: 700, color: '#fff' }}>
+        <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--charcoal)' }}>
           {summary?.weekLabel || 'All meetings'}
         </div>
       </div>
@@ -72,11 +72,11 @@ function CoverPage({ summary }) {
             <div style={{ fontSize: 28, fontWeight: 800, color: '#FF6600', fontFamily: "'DM Mono', monospace" }}>
               {s.val}
             </div>
-            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginTop: 4 }}>{s.label}</div>
+            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', marginTop: 4 }}>{s.label}</div>
           </div>
         ))}
       </div>
-      <div style={{ marginTop: 48, fontSize: 11, color: 'rgba(255,255,255,0.3)' }}>
+      <div style={{ marginTop: 48, fontSize: 12, color: 'rgba(255,255,255,0.3)' }}>
         Generated on {new Date().toLocaleString('en-US', {
           weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
           hour: '2-digit', minute: '2-digit',
@@ -182,7 +182,7 @@ function placeCanvasFlowed(pdf, canvas, cursor) {
     slice.height = Math.ceil(srcH);
     const ctx = slice.getContext('2d');
     ctx.drawImage(canvas, 0, Math.floor(srcY), canvas.width, Math.ceil(srcH),
-                  0, 0, canvas.width, Math.ceil(srcH));
+      0, 0, canvas.width, Math.ceil(srcH));
 
     const sliceData = slice.toDataURL('image/jpeg', 0.92);
     pdf.addImage(sliceData, 'JPEG', MARGIN, cursor, imgW, drawH);
@@ -321,7 +321,7 @@ export default function ReportGenerator({ data, onStart, onComplete, onProgress 
           <>
             <div data-report-section="team-header">
               <SectionTitle>Team Insights — Per-Meeting Breakdown</SectionTitle>
-              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', marginBottom: 4 }}>
+              <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.35)', marginBottom: 4 }}>
                 Summary of each meeting with participant roles and AI feedback
               </div>
             </div>
@@ -337,7 +337,7 @@ export default function ReportGenerator({ data, onStart, onComplete, onProgress 
           <>
             <div data-report-section="individual-header">
               <SectionTitle>Individual Insights — Self Evaluation</SectionTitle>
-              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', marginBottom: 4 }}>
+              <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.35)', marginBottom: 4 }}>
                 Personal self-evaluation across {meetings?.length || 0} meetings — skills, strengths, and actionable advice
               </div>
             </div>
@@ -395,7 +395,7 @@ export default function ReportGenerator({ data, onStart, onComplete, onProgress 
                       display: 'flex', alignItems: 'center', gap: 20,
                       padding: '12px 14px', borderRadius: 8,
                       background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)',
-                      fontSize: 11, color: 'rgba(255,255,255,0.4)',
+                      fontSize: 12, color: 'rgba(255,255,255,0.4)',
                     }}>
                       <span>📅 <strong style={{ color: 'rgba(255,255,255,0.6)' }}>{meetings?.length || 0}</strong> meetings</span>
                       <span>✅ <strong style={{ color: '#00C48C' }}>{attendMeetings.length}</strong> attend</span>

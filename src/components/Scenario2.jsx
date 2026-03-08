@@ -418,8 +418,8 @@ export default function Scenario2({ onBack }) {
                           </linearGradient>
                         </defs>
                         <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-                        <XAxis dataKey="month" tick={{ fill: 'var(--muted)', fontSize: 11 }} axisLine={false} tickLine={false} />
-                        <YAxis domain={[0, 100]} tick={{ fill: 'var(--muted)', fontSize: 11 }} axisLine={false} tickLine={false} />
+                        <XAxis dataKey="month" tick={{ fill: 'var(--muted)', fontSize: 12 }} axisLine={false} tickLine={false} />
+                        <YAxis domain={[0, 100]} tick={{ fill: 'var(--muted)', fontSize: 12 }} axisLine={false} tickLine={false} />
                         <Tooltip content={<CustomTooltip />} />
                         <Area type="monotone" dataKey="score" name="Sentiment Score" stroke="var(--blue)" fill="url(#s2-sentGrad)" strokeWidth={2} dot={{ fill: 'var(--blue)', r: 3 }} />
                       </AreaChart>
@@ -430,8 +430,8 @@ export default function Scenario2({ onBack }) {
                     <ResponsiveContainer width="100%" height={120}>
                       <BarChart data={c.interactions} barSize={8} barGap={2}>
                         <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-                        <XAxis dataKey="week" tick={{ fill: 'var(--muted)', fontSize: 10 }} axisLine={false} tickLine={false} />
-                        <YAxis tick={{ fill: 'var(--muted)', fontSize: 10 }} axisLine={false} tickLine={false} />
+                        <XAxis dataKey="week" tick={{ fill: 'var(--muted)', fontSize: 12 }} axisLine={false} tickLine={false} />
+                        <YAxis tick={{ fill: 'var(--muted)', fontSize: 12 }} axisLine={false} tickLine={false} />
                         <Tooltip content={<CustomTooltip />} />
                         <Bar dataKey="calls" name="Calls" fill="var(--purple)" radius={[2, 2, 0, 0]} />
                         <Bar dataKey="emails" name="Emails" fill="var(--blue)" radius={[2, 2, 0, 0]} />
@@ -529,8 +529,8 @@ export default function Scenario2({ onBack }) {
                           <stop offset="100%" stopColor="var(--purple)" stopOpacity={0.12} />
                         </radialGradient>
                       </defs>
-                      <PolarGrid stroke="rgba(255,255,255,0.18)" strokeWidth={1.2} />
-                      <PolarAngleAxis dataKey="axis" tick={{ fill: 'var(--text2)', fontSize: 11 }} />
+                      <PolarGrid stroke="var(--overlay-20)" strokeWidth={1.2} />
+                      <PolarAngleAxis dataKey="axis" tick={{ fill: 'var(--text2)', fontSize: 12 }} />
                       <Radar name="Score" dataKey="val" stroke="var(--purple)" fill="url(#s2-radar-grad)" fillOpacity={1} isAnimationActive animationDuration={1200} animationEasing="ease-out" />
                     </RadarChart>
                   </ResponsiveContainer>
@@ -540,8 +540,8 @@ export default function Scenario2({ onBack }) {
                   <ResponsiveContainer width="100%" height={240}>
                     <LineChart data={c.sentiment_history}>
                       <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-                      <XAxis dataKey="month" tick={{ fill: 'var(--muted)', fontSize: 11 }} axisLine={false} tickLine={false} />
-                      <YAxis domain={[0, 100]} tick={{ fill: 'var(--muted)', fontSize: 11 }} axisLine={false} tickLine={false} />
+                      <XAxis dataKey="month" tick={{ fill: 'var(--muted)', fontSize: 12 }} axisLine={false} tickLine={false} />
+                      <YAxis domain={[0, 100]} tick={{ fill: 'var(--muted)', fontSize: 12 }} axisLine={false} tickLine={false} />
                       <Tooltip content={<CustomTooltip />} />
                       <Line type="monotone" dataKey="score" name="Score" stroke="var(--blue)" strokeWidth={2.5} dot={{ fill: 'var(--blue)', r: 4 }} />
                     </LineChart>
@@ -552,8 +552,8 @@ export default function Scenario2({ onBack }) {
                   <ResponsiveContainer width="100%" height={160}>
                     <BarChart data={c.topics} barSize={30}>
                       <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-                      <XAxis dataKey="topic" tick={{ fill: 'var(--muted)', fontSize: 11 }} axisLine={false} tickLine={false} />
-                      <YAxis tick={{ fill: 'var(--muted)', fontSize: 11 }} axisLine={false} tickLine={false} />
+                      <XAxis dataKey="topic" tick={{ fill: 'var(--muted)', fontSize: 12 }} axisLine={false} tickLine={false} />
+                      <YAxis tick={{ fill: 'var(--muted)', fontSize: 12 }} axisLine={false} tickLine={false} />
                       <Tooltip content={<CustomTooltip />} />
                       <Bar dataKey="count" name="Mentions" radius={[4, 4, 0, 0]}>
                         {c.topics.map((_, i) => (

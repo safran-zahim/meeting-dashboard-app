@@ -7,13 +7,13 @@ function CustomTooltip({ active, payload, label }) {
   if (!active || !payload?.length) return null;
   return (
     <div style={{
-      background: '#0F1923', border: '1px solid rgba(255,102,0,0.3)',
+      background: 'var(--surface)', border: '1px solid var(--orange-pale)',
       borderRadius: 8, padding: '10px 14px',
     }}>
-      <div style={{ color: '#FF6600', fontWeight: 700, fontSize: 12, marginBottom: 4 }}>{label}</div>
+      <div style={{ color: 'var(--orange)', fontWeight: 700, fontSize: 12, marginBottom: 4 }}>{label}</div>
       {payload.map((p, i) => (
-        <div key={i} style={{ color: '#fff', fontSize: 12 }}>
-          {p.name}: <span style={{ color: p.color || '#FF6600' }}>{p.value}</span>
+        <div key={i} style={{ color: 'var(--text)', fontSize: 12 }}>
+          {p.name}: <span style={{ color: p.color || 'var(--orange)' }}>{p.value}</span>
         </div>
       ))}
     </div>
@@ -55,12 +55,12 @@ export default function ContributionTrend({ meetings }) {
       </div>
       <ResponsiveContainer width="100%" height={180}>
         <LineChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
-          <XAxis dataKey="day" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 11 }} axisLine={false} tickLine={false} />
-          <YAxis tick={{ fill: 'rgba(255,255,255,0.3)', fontSize: 10 }} axisLine={false} tickLine={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="var(--overlay-04)" />
+          <XAxis dataKey="day" tick={{ fill: 'var(--overlay-40)', fontSize: 12 }} axisLine={false} tickLine={false} />
+          <YAxis tick={{ fill: 'var(--overlay-30)', fontSize: 12 }} axisLine={false} tickLine={false} />
           <Tooltip content={<CustomTooltip />} />
-          <Line type="monotone" dataKey="avgScore" name="Avg Score" stroke="#FF6600" strokeWidth={2.5} dot={{ fill: '#FF6600', r: 4 }} />
-          <Line type="monotone" dataKey="meetings" name="Meetings" stroke="#3B82F6" strokeWidth={2} strokeDasharray="5 4" dot={{ fill: '#3B82F6', r: 3 }} />
+          <Line type="monotone" dataKey="avgScore" name="Avg Score" stroke="var(--orange)" strokeWidth={2.5} dot={{ fill: 'var(--orange)', r: 4 }} />
+          <Line type="monotone" dataKey="meetings" name="Meetings" stroke="var(--blue)" strokeWidth={2} strokeDasharray="5 4" dot={{ fill: 'var(--blue)', r: 3 }} />
         </LineChart>
       </ResponsiveContainer>
       <div className="chart-note" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>

@@ -251,7 +251,7 @@ export default function App() {
               {dbConnected ? 'DB Connected' : 'DB Offline'}
             </div>
             <div className="f-badge">⚙️ n8n</div>
-            <div className="f-badge" style={{ background: 'var(--orange-pale)', borderColor: 'rgba(255,102,0,0.2)', color: 'var(--orange)' }}>
+            <div className="f-badge" style={{ background: 'var(--orange-pale)', borderColor: 'var(--orange-pale)', color: 'var(--orange)' }}>
               🍊 OrangeHRM
             </div>
           </div>
@@ -272,14 +272,14 @@ export default function App() {
           <div className="report-overlay-content">
             <div className="spinner" />
             <div style={{ marginTop: 16, fontSize: 16, fontWeight: 700 }}>Generating PDF Report...</div>
-            <div style={{ marginTop: 12, width: 220, height: 6, background: 'rgba(255,255,255,0.08)', borderRadius: 3 }}>
+            <div style={{ marginTop: 12, width: 220, height: 6, background: 'var(--overlay-08)', borderRadius: 3 }}>
               <div style={{
                 width: `${reportProgress.pct}%`, height: '100%',
-                background: '#FF6600', borderRadius: 3,
+                background: 'var(--orange)', borderRadius: 3,
                 transition: 'width 0.3s ease',
               }} />
             </div>
-            <div style={{ marginTop: 8, fontSize: 12, color: 'rgba(255,255,255,0.5)' }}>
+            <div style={{ marginTop: 8, fontSize: 12, color: 'var(--overlay-50)' }}>
               {reportProgress.pct > 0
                 ? `${reportProgress.pct}% — capturing ${reportProgress.section}...`
                 : 'Preparing sections...'}

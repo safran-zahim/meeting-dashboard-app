@@ -185,7 +185,7 @@ function CalendarEvent({ ev, onClick, isSelected }) {
         top: ev.start * 60,
         height: (ev.end - ev.start) * 60 - 3,
         background: ev.isNext ? ev.color : ev.light,
-        color: ev.isNext ? '#fff' : ev.color,
+        color: ev.isNext ? 'var(--charcoal)' : ev.color,
         borderLeftColor: ev.isNext ? 'transparent' : ev.color,
       }}
     >

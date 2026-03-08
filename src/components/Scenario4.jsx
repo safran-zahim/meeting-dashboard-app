@@ -299,8 +299,8 @@ export default function Scenario4({ onBack }) {
                       <rect x={x + 1} y={y + 1} width={width - 2} height={height - 2} fill={color} fillOpacity={0.8} rx={4} />
                       {width > 50 && height > 30 && (
                         <>
-                          <text x={x + width / 2} y={y + height / 2 - 6} textAnchor="middle" fill="#fff" fontSize={11} fontWeight={600}>{name}</text>
-                          <text x={x + width / 2} y={y + height / 2 + 10} textAnchor="middle" fill="rgba(255,255,255,0.6)" fontSize={9}>{value}m</text>
+                          <text x={x + width / 2} y={y + height / 2 - 6} textAnchor="middle" fill="var(--text)" fontSize={11} fontWeight={600}>{name}</text>
+                          <text x={x + width / 2} y={y + height / 2 + 10} textAnchor="middle" fill="var(--text2)" fontSize={10}>{value}m</text>
                         </>
                       )}
                     </g>
@@ -344,8 +344,8 @@ export default function Scenario4({ onBack }) {
             <p className="scenario4-panel-sub">negative = problem-raiser, positive = solution-driver</p>
             <ResponsiveContainer width="100%" height={260}>
               <BarChart data={problemVsSolution} layout="vertical" margin={{ left: 90, right: 10 }}>
-                <XAxis type="number" tick={{ fontSize: 9, fill: 'var(--muted)' }} axisLine={false} tickLine={false} />
-                <YAxis type="category" dataKey="name" width={88} tick={{ fontSize: 9, fill: 'var(--text2)' }} axisLine={false} tickLine={false} />
+                <XAxis type="number" tick={{ fontSize: 12, fill: 'var(--muted)' }} axisLine={false} tickLine={false} />
+                <YAxis type="category" dataKey="name" width={88} tick={{ fontSize: 12, fill: 'var(--text2)' }} axisLine={false} tickLine={false} />
                 <Tooltip content={<CustomTooltip />} />
                 <CartesianGrid strokeDasharray="2 4" stroke="var(--border)" vertical horizontal={false} />
                 <Bar dataKey="problems" name="Problems Raised" fill={T.red} fillOpacity={0.8} radius={[0, 3, 3, 0]} />
@@ -364,12 +364,12 @@ export default function Scenario4({ onBack }) {
             <p className="scenario4-panel-sub">normalized score across 6 participation dimensions</p>
             <ResponsiveContainer width="100%" height={280}>
               <RadarChart data={engagementRadar}>
-                <PolarGrid stroke="rgba(255,255,255,0.08)" />
-                <PolarAngleAxis dataKey="metric" tick={{ fill: 'var(--muted)', fontSize: 10 }} />
+                <PolarGrid stroke="var(--overlay-10)" />
+                <PolarAngleAxis dataKey="metric" tick={{ fill: 'var(--muted)', fontSize: 12 }} />
                 <Radar name="Team Leads" dataKey="Team Leads" stroke={T.blue} fill={T.blue} fillOpacity={0.15} strokeWidth={2} />
                 <Radar name="Sr. Leadership" dataKey="Sr. Leadership" stroke={T.orange} fill={T.orange} fillOpacity={0.15} strokeWidth={2} />
                 <Radar name="ICs" dataKey="ICs" stroke={T.purple} fill={T.purple} fillOpacity={0.1} strokeWidth={1.5} strokeDasharray="4 2" />
-                <Legend iconType="circle" iconSize={7} wrapperStyle={{ fontSize: 10 }} />
+                <Legend iconType="circle" iconSize={7} wrapperStyle={{ fontSize: 12 }} />
                 <Tooltip content={<CustomTooltip />} />
               </RadarChart>
             </ResponsiveContainer>
@@ -414,10 +414,10 @@ export default function Scenario4({ onBack }) {
             <ResponsiveContainer width="100%" height={220}>
               <LineChart data={meetingPulse} margin={{ right: 10, left: -10 }}>
                 <CartesianGrid strokeDasharray="2 6" stroke="var(--border)" />
-                <XAxis dataKey="week" tick={{ fontSize: 10, fill: 'var(--muted)' }} axisLine={false} tickLine={false} />
-                <YAxis domain={[0, 100]} tick={{ fontSize: 10, fill: 'var(--muted)' }} axisLine={false} tickLine={false} />
+                <XAxis dataKey="week" tick={{ fontSize: 12, fill: 'var(--muted)' }} axisLine={false} tickLine={false} />
+                <YAxis domain={[0, 100]} tick={{ fontSize: 12, fill: 'var(--muted)' }} axisLine={false} tickLine={false} />
                 <Tooltip content={<CustomTooltip />} />
-                <Legend iconType="circle" iconSize={7} wrapperStyle={{ fontSize: 10 }} />
+                <Legend iconType="circle" iconSize={7} wrapperStyle={{ fontSize: 12 }} />
                 <Line type="monotone" dataKey="equity" name="Equity Score" stroke={T.green} strokeWidth={2} dot={{ r: 3, fill: T.green }} />
                 <Line type="monotone" dataKey="dominance" name="Voice Dominance" stroke={T.red} strokeWidth={2} dot={{ r: 3, fill: T.red }} />
                 <Line type="monotone" dataKey="participation" name="Active Participation" stroke={T.blue} strokeWidth={2} strokeDasharray="5 3" dot={{ r: 3, fill: T.blue }} />
